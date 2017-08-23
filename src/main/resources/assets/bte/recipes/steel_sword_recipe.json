@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "bte:steel_sword"
+  },
+  "pattern": [
+    " I ",
+    " I ",
+    " S "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "bte:ingot_steel"
+    },
+    "S": {
+      "item": "bte:steel_rod"
+    }
+  }
+}

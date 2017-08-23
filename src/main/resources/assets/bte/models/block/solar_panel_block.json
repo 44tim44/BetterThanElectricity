@@ -1,0 +1,6 @@
+{
+  "parent": "bte:block/machine_block_template",
+  "textures": {
+    "top": "bte:blocks/block_solar_panel_top"
+  }
+}

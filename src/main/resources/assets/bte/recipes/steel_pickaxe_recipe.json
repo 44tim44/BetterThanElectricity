@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "bte:steel_pickaxe"
+  },
+  "pattern": [
+    "III",
+    " S ",
+    " S "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "bte:ingot_steel"
+    },
+    "S": {
+      "item": "bte:steel_rod"
+    }
+  }
+}

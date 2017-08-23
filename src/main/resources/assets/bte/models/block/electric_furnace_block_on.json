@@ -1,0 +1,6 @@
+{
+  "parent": "bte:block/machine_block_template",
+  "textures": {
+    "front": "bte:blocks/block_elec_furnace_front_on"
+  }
+}

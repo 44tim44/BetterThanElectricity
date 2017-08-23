@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": {
+            "model": "bte:solar_panel_block"
+        },
+        "inventory": {
+            "model": "bte:solar_panel_block"
+        }
+    }
+}

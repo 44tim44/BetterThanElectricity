@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "bte:machine_block"
+    },
+    "inventory": {
+      "model": "bte:machine_block"
+    }
+  }
+}

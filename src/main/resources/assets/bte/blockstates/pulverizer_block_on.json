@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "bte:pulverizer_block_on" },
+        "facing=south": { "model": "bte:pulverizer_block_on", "y": 180 },
+        "facing=west":  { "model": "bte:pulverizer_block_on", "y": 270 },
+        "facing=east":  { "model": "bte:pulverizer_block_on", "y": 90 }
+    }
+}

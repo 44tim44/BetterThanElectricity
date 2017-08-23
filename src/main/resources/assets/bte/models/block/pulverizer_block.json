@@ -1,0 +1,7 @@
+{
+  "parent": "bte:block/machine_block_template",
+  "textures": {
+    "top": "bte:blocks/block_pulverizer_top_off",
+    "front": "bte:blocks/block_pulverizer_front"
+  }
+}

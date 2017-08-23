@@ -1,0 +1,12 @@
+{
+  "parent": "bte:block/orientable_all",
+  "textures": {
+    "particle": "bte:blocks/block_machine_top",
+    "bottom": "bte:blocks/block_machine_bottom",
+    "top": "bte:blocks/block_machine_top",
+    "front": "bte:blocks/block_machine_side",
+    "left": "bte:blocks/block_machine_side",
+    "back": "bte:blocks/block_machine_side",
+    "right": "bte:blocks/block_machine_side"
+  }
+}
