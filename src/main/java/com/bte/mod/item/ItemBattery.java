@@ -56,7 +56,7 @@ public class ItemBattery extends Item {
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        return (double)stack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null).getCharge() / (double)stack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null).getMaxCharge();
+        return 1 -((double)stack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null).getCharge() / (double)stack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null).getMaxCharge());
     }
 
     public void registerItemModel() {

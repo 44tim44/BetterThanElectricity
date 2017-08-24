@@ -16,11 +16,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  * Created by Timeout on 2017-08-20.
  */
 public class CommonProxy {
-    public void preInit(FMLPreInitializationEvent event){}
-    public void init(FMLInitializationEvent event){
+    public void preInit(FMLPreInitializationEvent event){
         CapabilityManager.INSTANCE.register(ICharge.class, new ChargeStorage(), Charge.class);
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
     }
+    public void init(FMLInitializationEvent event){}
     public void postInit(FMLPostInitializationEvent event){}
     public void serverStarting(FMLServerStartingEvent event){}
     public void serverStopping(FMLServerStoppingEvent event){}

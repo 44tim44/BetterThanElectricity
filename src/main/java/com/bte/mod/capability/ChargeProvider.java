@@ -25,18 +25,26 @@ public class ChargeProvider implements ICapabilitySerializable<NBTBase>
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-        return capability == CHARGE_CAPABILITY ? CHARGE_CAPABILITY.<T> cast(this.instance) : null;
+        //return capability == CHARGE_CAPABILITY ? CHARGE_CAPABILITY.<T> cast(this.instance) : null;
+        if (capability == CHARGE_CAPABILITY)
+        {
+            return (T) instance;
+        }
+
+        return null;
     }
 
     @Override
     public NBTBase serializeNBT()
     {
-        return CHARGE_CAPABILITY.getStorage().writeNBT(CHARGE_CAPABILITY, this.instance, null);
+        //return CHARGE_CAPABILITY.getStorage().writeNBT(CHARGE_CAPABILITY, this.instance, null);
+        return CHARGE_CAPABILITY.writeNBT(this.instance,null);
     }
 
     @Override
     public void deserializeNBT(NBTBase nbt)
     {
-        CHARGE_CAPABILITY.getStorage().readNBT(CHARGE_CAPABILITY, this.instance, null, nbt);
+        //CHARGE_CAPABILITY.getStorage().readNBT(CHARGE_CAPABILITY, this.instance, null, nbt);
+        CHARGE_CAPABILITY.readNBT(this.instance, null, nbt);
     }
 }

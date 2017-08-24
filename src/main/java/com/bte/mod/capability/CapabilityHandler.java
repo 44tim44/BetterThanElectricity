@@ -16,7 +16,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CapabilityHandler
 {
+    /*
     public static final ResourceLocation CHARGE_CAPABILITY = new ResourceLocation(BTEMod.MODID, "charge");
+
 
     @SubscribeEvent
     public void attachCapability(AttachCapabilitiesEvent<Item> item)
@@ -25,5 +27,5 @@ public class CapabilityHandler
             item.addCapability(CHARGE_CAPABILITY, new ChargeProvider());
         }
     }
-
+    */
 }
