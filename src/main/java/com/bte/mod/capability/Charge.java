@@ -6,7 +6,12 @@ package com.bte.mod.capability;
 public class Charge implements ICharge {
 
     private int charge;
-    private int maxCharge = 640;
+    private int maxCharge;
+
+    public Charge(){
+        this.charge = 0;
+        this.maxCharge = 640;
+    }
 
     public void setMaxCharge(int value){
         if(value < 1)
