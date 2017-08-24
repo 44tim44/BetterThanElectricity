@@ -7,6 +7,7 @@ import com.bte.mod.item.ItemBattery;
 import com.bte.mod.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -46,7 +47,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
     public int getCharge(){
         ItemStack itemstack = inventory.getStackInSlot(0);
         if (itemstack.isEmpty()){
-            return 0;
+            return -1;
         }
         else if (itemstack.getItem() == battery)
         {
@@ -59,7 +60,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
         }
         else
         {
-            return 0;
+            return -1;
         }
     }
 
@@ -67,7 +68,8 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
     {
         if (this.hasWorld())
         {
-            if (!this.world.provider.isNether() && this.world.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.world.isRaining() && this.world.isDaytime()) {
+            System.out.println(world.getWorldTime());
+            if (!this.world.provider.isNether() && this.world.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.world.isRaining() && world.getWorldTime()%24000 < 12000 && world.getWorldTime()%24000 > 0) {
                 return true;
             }
             else return false;
