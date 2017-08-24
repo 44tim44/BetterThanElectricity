@@ -68,7 +68,6 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
     {
         if (this.hasWorld())
         {
-            System.out.println(world.getWorldTime());
             if (!this.world.provider.isNether() && this.world.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.world.isRaining() && world.getWorldTime()%24000 < 12000 && world.getWorldTime()%24000 > 0) {
                 return true;
             }
