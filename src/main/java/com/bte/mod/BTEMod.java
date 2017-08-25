@@ -1,6 +1,10 @@
 package com.bte.mod;
 
 import com.bte.mod.block.ModBlocks;
+import com.bte.mod.capability.CapabilityHandler;
+import com.bte.mod.capability.Charge;
+import com.bte.mod.capability.ChargeStorage;
+import com.bte.mod.capability.ICharge;
 import com.bte.mod.item.ModItems;
 import com.bte.mod.proxy.CommonProxy;
 import com.bte.mod.recipe.ModRecipes;
@@ -8,6 +12,8 @@ import com.bte.mod.world.ModWorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -56,20 +62,19 @@ public class BTEMod {
         LOGGER.info("Starting Pre-Intialization...");
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new ModGuiHandler());
-        proxy.preInit(event);
+        CapabilityManager.INSTANCE.register(ICharge.class, new ChargeStorage(), Charge.class);
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
         LOGGER.info("Starting Intialization...");
         ModRecipes.init();
-        proxy.init(event);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event){
         LOGGER.info("Starting Post-Intialization...");
-        proxy.postInit(event);
     }
 
     @Mod.EventBusSubscriber
