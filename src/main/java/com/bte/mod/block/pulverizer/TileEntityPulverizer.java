@@ -1,5 +1,7 @@
 package com.bte.mod.block.pulverizer;
 
+import com.bte.mod.capability.ChargeProvider;
+import com.bte.mod.capability.ICharge;
 import com.bte.mod.item.ModItems;
 import com.bte.mod.recipe.PulverizerRecipes;
 import net.minecraft.block.Block;
@@ -215,7 +217,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 
             if (this.isBurning() || !itemstack.isEmpty() && !((ItemStack)this.pulverizerItemStacks.get(0)).isEmpty())
             {
-                if (!this.isBurning() && this.canPulverize() && itemstack.getItemDamage() < itemstack.getMaxDamage())
+                if (!this.isBurning() && this.canPulverize())
                 {
                     this.furnaceBurnTime = getItemBurnTime(itemstack);
                     this.currentItemBurnTime = this.furnaceBurnTime;
@@ -226,15 +228,21 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 
                         if (!itemstack.isEmpty())
                         {
-                            Item item = itemstack.getItem();
-                            //itemstack.shrink(1);
-                            itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+                            //Item item = itemstack.getItem();
+                            ////itemstack.shrink(1);
+                            //itemstack.setItemDamage(itemstack.getItemDamage() + 1);
 
+                            ICharge charge = itemstack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null);
+                            //ItemBattery battery = (ItemBattery) itemstack1.getItem();
+                            charge.decreaseCharge();
+
+                            /*
                             if (itemstack.isEmpty())
                             {
                                 ItemStack item1 = item.getContainerItem(itemstack);
                                 this.pulverizerItemStacks.set(1,item1);
                             }
+                            */
                         }
                     }
                 }
@@ -362,8 +370,19 @@ public class TileEntityPulverizer extends TileEntityLockable implements
         {
             Item item = stack.getItem();
 
-            if (item == ModItems.battery) return 10;
-            else return 0;
+            if (item == ModItems.battery)
+            {
+                ICharge charge = stack.getCapability(ChargeProvider.CHARGE_CAPABILITY, null);
+                if (charge.getCharge() > 0)
+                {
+                    return 10;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+            return 0;
             /*
             if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
             {

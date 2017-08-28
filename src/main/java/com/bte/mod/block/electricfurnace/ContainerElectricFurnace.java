@@ -125,16 +125,16 @@ public class ContainerElectricFurnace extends Container
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index == 2)
+            if (index == 2 || index == 6 || index == 7 || index == 8)
             {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true))
+                if (!this.mergeItemStack(itemstack1, 9, 45, true))
                 {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
-            else if (index != 1 && index != 0)
+            else if (index != 1 && index != 0 && index != 3 && index != 4 && index != 5)
             {
                 if (!FurnaceRecipes.instance().getSmeltingResult(itemstack1).isEmpty())
                 {
@@ -150,19 +150,19 @@ public class ContainerElectricFurnace extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 3 && index < 30)
+                else if (index >= 9 && index < 36)
                 {
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false))
+                    if (!this.mergeItemStack(itemstack1, 36, 45, false))
                     {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
+                else if (index >= 36 && index < 45 && !this.mergeItemStack(itemstack1, 9, 36, false))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+            else if (!this.mergeItemStack(itemstack1, 9, 45, false))
             {
                 return ItemStack.EMPTY;
             }
