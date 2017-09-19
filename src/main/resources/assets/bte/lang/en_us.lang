@@ -40,3 +40,20 @@ container.electric_furnace=Electric Furnace
 tile.machine_block.name=Machine Block
 
 item.battery.name=Battery
+
+tile.planks_white=White Dyed Planks
+tile.planks_lightgray=Light Gray Dyed Planks
+tile.planks_gray=Gray Dyed Planks
+tile.planks_black=Black Dyed Planks
+tile.planks_brown=Brown Dyed Planks
+tile.planks_red=Red Dyed Planks
+tile.planks_orange=Orange Dyed Planks
+tile.planks_yellow=Yellow Dyed Planks
+tile.planks_lime=Lime Dyed Planks
+tile.planks_green=Green Dyed Planks
+tile.planks_cyan=Cyan Dyed Planks
+tile.planks_lightblue=Light Blue Dyed Planks
+tile.planks_blue=Blue Dyed Planks
+tile.planks_purple=Purple Dyed Planks
+tile.planks_magenta=Magenta Dyed Planks
+tile.planks_pink=Pink Dyed Planks
