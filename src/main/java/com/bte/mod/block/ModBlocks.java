@@ -49,6 +49,9 @@ public class ModBlocks {
     public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
+    public static BlockSlabBase smoothstone_slab = new BlockHalfSlabBase(Material.ROCK,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabBase smoothstone_doubleslab = new BlockDoubleSlabBase(Material.ROCK,"smoothstone_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
     public static BlockHorizontalBase chairOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_oak");
@@ -87,6 +90,9 @@ public class ModBlocks {
                 planks_purple,
                 planks_magenta,
                 planks_pink,
+
+                smoothstone_slab,
+                smoothstone_doubleslab,
 
                 /* Other */
                 chairOak
@@ -132,6 +138,9 @@ public class ModBlocks {
                 planks_magenta.createItemBlock(),
                 planks_pink.createItemBlock(),
 
+                smoothstone_slab.createItemBlock(),
+                //smoothstone_doubleslab.createItemBlock(),
+
                 /* Other */
                 chairOak.createItemBlock()
         );
@@ -165,6 +174,9 @@ public class ModBlocks {
         planks_purple.registerItemModel(Item.getItemFromBlock(planks_purple));
         planks_magenta.registerItemModel(Item.getItemFromBlock(planks_magenta));
         planks_pink.registerItemModel(Item.getItemFromBlock(planks_pink));
+
+        smoothstone_slab.registerItemModel(Item.getItemFromBlock(smoothstone_slab));
+        //smoothstone_doubleslab.registerItemModel(Item.getItemFromBlock(smoothstone_doubleslab));
 
         chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
     }
