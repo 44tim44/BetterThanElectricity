@@ -5,12 +5,14 @@ import com.bte.mod.capability.CapabilityHandler;
 import com.bte.mod.capability.Charge;
 import com.bte.mod.capability.ChargeStorage;
 import com.bte.mod.capability.ICharge;
+import com.bte.mod.entity.EntitySittableBlock;
 import com.bte.mod.item.ModItems;
 import com.bte.mod.proxy.CommonProxy;
 import com.bte.mod.recipe.ModRecipes;
 import com.bte.mod.world.ModWorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -23,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.logging.Logger;
@@ -70,6 +73,7 @@ public class BTEMod {
     public void init(FMLInitializationEvent event){
         LOGGER.info("Starting Intialization...");
         ModRecipes.init();
+        EntityRegistry.registerModEntity(new ResourceLocation("bte:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
     }
 
     @Mod.EventHandler

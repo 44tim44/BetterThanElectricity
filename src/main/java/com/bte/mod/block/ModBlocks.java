@@ -8,6 +8,7 @@ import com.bte.mod.block.electricfurnace.BlockElectricFurnace;
 import com.bte.mod.block.pulverizer.BlockPulverizer;
 import com.bte.mod.block.solarpanel.BlockSolarPanel;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -16,21 +17,21 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
 
+    /* Ores */
     public static BlockOre oreCopper = new BlockOre("ore_copper").setCreativeTab(CreativeTabs.MATERIALS);
     public static BlockOre oreTin = new BlockOre("ore_tin").setCreativeTab(CreativeTabs.MATERIALS);
     public static BlockOre oreAluminum = new BlockOre("ore_aluminum").setCreativeTab(CreativeTabs.MATERIALS);
 
-    public static BlockCropCorn cropCorn = new BlockCropCorn();
-
+    /* Machines */
     public static BlockCounter counter = new BlockCounter();
     public static BlockPulverizer pulverizer = (BlockPulverizer) new BlockPulverizer(false,"pulverizer_block").setCreativeTab(CreativeTabs.DECORATIONS);
     public static BlockPulverizer pulverizer_on = new BlockPulverizer(true,"pulverizer_block_on");
     public static BlockElectricFurnace electricFurnace = (BlockElectricFurnace) new BlockElectricFurnace(false,"electric_furnace_block").setCreativeTab(CreativeTabs.DECORATIONS);
     public static BlockElectricFurnace electricFurnace_on = new BlockElectricFurnace(true,"electric_furnace_block_on");
-
     public static BlockBase machineblock = new BlockBase(Material.IRON,"machine_block").setCreativeTab(CreativeTabs.DECORATIONS);
     public static BlockSolarPanel solarPanel = new BlockSolarPanel();
 
+    /* Building Blocks */
     public static BlockBase planks_white = new BlockBase(Material.WOOD,"planks_white").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_lightgray = new BlockBase(Material.WOOD,"planks_lightgray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_gray = new BlockBase(Material.WOOD,"planks_gray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
@@ -48,13 +49,19 @@ public class ModBlocks {
     public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
+    /* Other */
+    public static BlockCropCorn cropCorn = new BlockCropCorn();
+    public static Block chairOak = new BlockChair(Material.WOOD, SoundType.WOOD).setUnlocalizedName("chair_oak").setRegistryName("chair_oak");
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
+                /* Ores */
                 oreCopper,
                 oreTin,
                 oreAluminum,
                 cropCorn,
+
+                /* Machines */
                 counter,
                 pulverizer,
                 pulverizer_on,
@@ -63,6 +70,7 @@ public class ModBlocks {
                 machineblock,
                 solarPanel,
 
+                /* Building Blocks */
                 planks_white,
                 planks_lightgray,
                 planks_gray,
@@ -79,6 +87,9 @@ public class ModBlocks {
                 planks_purple,
                 planks_magenta,
                 planks_pink
+
+                /* Other */
+
         );
 
         GameRegistry.registerTileEntity(pulverizer.getTileEntityClass(), pulverizer.getRegistryName().toString());
@@ -88,9 +99,12 @@ public class ModBlocks {
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
         registry.registerAll(
+                /* Ores */
                 oreCopper.createItemBlock(),
                 oreTin.createItemBlock(),
                 oreAluminum.createItemBlock(),
+
+                /* Machines */
                 counter.createItemBlock(),
                 pulverizer.createItemBlock(),
                 pulverizer_on.createItemBlock(),
@@ -98,6 +112,8 @@ public class ModBlocks {
                 electricFurnace_on.createItemBlock(),
                 machineblock.createItemBlock(),
                 solarPanel.createItemBlock(),
+
+                /* Building Blocks */
                 planks_white.createItemBlock(),
                 planks_lightgray.createItemBlock(),
                 planks_gray.createItemBlock(),
@@ -114,6 +130,8 @@ public class ModBlocks {
                 planks_purple.createItemBlock(),
                 planks_magenta.createItemBlock(),
                 planks_pink.createItemBlock()
+
+                /* Other */
         );
     }
 
