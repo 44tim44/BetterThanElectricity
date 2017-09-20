@@ -21,12 +21,12 @@ import net.minecraft.world.World;
 /**
  * Created by Timeout on 2017-09-20.
  */
-public class BlockChair extends BlockHorizontal {
+public class BlockChair extends BlockHorizontalBase {
 
 
-    public BlockChair(Material material, SoundType sound)
+    public BlockChair(Material material, SoundType sound, String name)
     {
-        super(material);
+        super(material,name);
         this.setHardness(1.0F);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));

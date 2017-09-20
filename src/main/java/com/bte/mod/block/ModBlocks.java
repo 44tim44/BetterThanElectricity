@@ -51,7 +51,7 @@ public class ModBlocks {
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
-    public static Block chairOak = new BlockChair(Material.WOOD, SoundType.WOOD).setUnlocalizedName("chair_oak").setRegistryName("chair_oak");
+    public static BlockHorizontalBase chairOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_oak");
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -86,9 +86,10 @@ public class ModBlocks {
                 planks_blue,
                 planks_purple,
                 planks_magenta,
-                planks_pink
+                planks_pink,
 
                 /* Other */
+                chairOak
 
         );
 
@@ -129,9 +130,10 @@ public class ModBlocks {
                 planks_blue.createItemBlock(),
                 planks_purple.createItemBlock(),
                 planks_magenta.createItemBlock(),
-                planks_pink.createItemBlock()
+                planks_pink.createItemBlock(),
 
                 /* Other */
+                chairOak.createItemBlock()
         );
     }
 
@@ -163,6 +165,8 @@ public class ModBlocks {
         planks_purple.registerItemModel(Item.getItemFromBlock(planks_purple));
         planks_magenta.registerItemModel(Item.getItemFromBlock(planks_magenta));
         planks_pink.registerItemModel(Item.getItemFromBlock(planks_pink));
+
+        chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
     }
 
 }
