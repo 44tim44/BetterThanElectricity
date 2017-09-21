@@ -1,5 +1,5 @@
 {
-  "parent": "bte:block/lower_smoothstone_slab",
+  "parent": "bte:block/smoothstone_slab_half",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

@@ -1,6 +1,5 @@
 {
   "variants": {
-    "variant=false": { "model": "bte:smoothstone_doubleslab" },
-    "variant=true":    { "model": "bte:smoothstone_doubleslab" }
+    "normal": { "model": "minecraft:block/stone" }
   }
 }

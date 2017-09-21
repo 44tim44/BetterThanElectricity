@@ -3,6 +3,7 @@ package com.bte.mod.block;
 /**
  * Created by Timeout on 2017-08-20.
  */
+import com.bte.mod.ModEnums;
 import com.bte.mod.block.counter.BlockCounter;
 import com.bte.mod.block.electricfurnace.BlockElectricFurnace;
 import com.bte.mod.block.pulverizer.BlockPulverizer;
@@ -49,8 +50,8 @@ public class ModBlocks {
     public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
-    public static BlockSlabBase smoothstone_slab = new BlockHalfSlabBase(Material.ROCK,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockSlabBase smoothstone_doubleslab = new BlockDoubleSlabBase(Material.ROCK,"smoothstone_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabBase smoothstone_slab = new BlockSlabBase(ModEnums.BlockType.SMOOTHSTONE,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(ModEnums.BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
@@ -138,8 +139,7 @@ public class ModBlocks {
                 planks_magenta.createItemBlock(),
                 planks_pink.createItemBlock(),
 
-                smoothstone_slab.createItemBlock(),
-                //smoothstone_doubleslab.createItemBlock(),
+                smoothstone_slab.createItemSlab(smoothstone_slab,smoothstone_slab,smoothstone_doubleslab),
 
                 /* Other */
                 chairOak.createItemBlock()
