@@ -1,5 +1,6 @@
 package com.bte.mod.block.pulverizer;
 
+import com.bte.mod.block.inventory.SlotBattery;
 import com.bte.mod.capability.ChargeProvider;
 import com.bte.mod.capability.ICharge;
 import com.bte.mod.item.ModItems;
@@ -356,7 +357,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ITickabl
      */
     public static int getItemBurnTime(ItemStack stack)
     {
-        if (stack.isEmpty())
+        if (stack == null)
         {
             return 0;
         }
@@ -453,7 +454,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ITickabl
         else
         {
             ItemStack itemstack = this.pulverizerItemStacks.get(1);
-            return isItemFuel(stack);
+            return isItemFuel(stack) || SlotBattery.isBattery(stack) && (itemstack.isEmpty() || itemstack.getItem() != ModItems.battery);
         }
     }
 
@@ -478,6 +479,11 @@ public class TileEntityPulverizer extends TileEntityLockable implements ITickabl
         if (direction == EnumFacing.DOWN && index == 1)
         {
             Item item = stack.getItem();
+
+            if (item != ModItems.battery)
+            {
+                return false;
+            }
         }
 
         return true;

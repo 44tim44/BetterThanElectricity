@@ -15,13 +15,16 @@ import java.util.Map;
 /**
  * Created by Timeout on 2017-08-20.
  */
-public class PulverizerRecipes {
+public class PulverizerRecipes
+{
     private static final PulverizerRecipes SMELTING_BASE = new PulverizerRecipes();
+    /** The list of smelting results. */
     private final Map<ItemStack, ItemStack> smeltingList = Maps.<ItemStack, ItemStack>newHashMap();
+    /** A list which contains how many experience points each recipe output will give. */
     private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
 
     /**
-     * Returns an instance of FurnaceRecipes.
+     * Returns an instance of PulverizerRecipes.
      */
     public static PulverizerRecipes instance()
     {
@@ -73,7 +76,7 @@ public class PulverizerRecipes {
      */
     public void addSmeltingRecipe(ItemStack input, ItemStack stack, float experience)
     {
-        if (getSmeltingResult(input) != null) { net.minecraftforge.fml.common.FMLLog.info("Ignored smelting recipe with conflicting input: " + input + " = " + stack); return; }
+        if (getSmeltingResult(input) != ItemStack.EMPTY) { net.minecraftforge.fml.common.FMLLog.info("Ignored smelting recipe with conflicting input: " + input + " = " + stack); return; }
         this.smeltingList.put(input, stack);
         this.experienceList.put(stack, Float.valueOf(experience));
     }
@@ -81,18 +84,17 @@ public class PulverizerRecipes {
     /**
      * Returns the smelting result of an item.
      */
-    @Nullable
     public ItemStack getSmeltingResult(ItemStack stack)
     {
         for (Map.Entry<ItemStack, ItemStack> entry : this.smeltingList.entrySet())
         {
-            if (this.compareItemStacks(stack, (ItemStack)entry.getKey()))
+            if (this.compareItemStacks(stack, entry.getKey()))
             {
-                return (ItemStack)entry.getValue();
+                return entry.getValue();
             }
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     /**

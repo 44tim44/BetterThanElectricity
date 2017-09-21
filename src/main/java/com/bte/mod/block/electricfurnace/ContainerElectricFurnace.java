@@ -1,6 +1,7 @@
 package com.bte.mod.block.electricfurnace;
 
 import com.bte.mod.block.inventory.SlotBattery;
+import com.bte.mod.item.ModItems;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -142,7 +143,7 @@ public class ContainerElectricFurnace extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (TileEntityElectricFurnace.isItemFuel(itemstack1))
+                else if (TileEntityElectricFurnace.isItemFuel(itemstack1) || itemstack1.getItem() == ModItems.battery)
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

@@ -1,10 +1,12 @@
 package com.bte.mod.block.pulverizer;
 
 import com.bte.mod.block.inventory.SlotBattery;
+import com.bte.mod.item.ModItems;
 import com.bte.mod.recipe.PulverizerRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -103,7 +105,7 @@ public class ContainerPulverizer extends Container
      */
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
-        ItemStack itemstack = null;
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = (Slot)this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
@@ -129,7 +131,7 @@ public class ContainerPulverizer extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (TileEntityPulverizer.isItemFuel(itemstack1))
+                else if (TileEntityPulverizer.isItemFuel(itemstack1) || itemstack1.getItem() == ModItems.battery)
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
