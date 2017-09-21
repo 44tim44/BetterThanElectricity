@@ -3,7 +3,8 @@ package com.bte.mod.block;
 /**
  * Created by Timeout on 2017-08-20.
  */
-import com.bte.mod.ModEnums;
+
+import com.bte.mod.ModEnums.BlockType;
 import com.bte.mod.block.counter.BlockCounter;
 import com.bte.mod.block.electricfurnace.BlockElectricFurnace;
 import com.bte.mod.block.pulverizer.BlockPulverizer;
@@ -50,8 +51,10 @@ public class ModBlocks {
     public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
-    public static BlockSlabBase smoothstone_slab = new BlockSlabBase(ModEnums.BlockType.SMOOTHSTONE,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(ModEnums.BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabBase smoothstone_slab = new BlockSlabBase(BlockType.SMOOTHSTONE,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
+    public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
+    public static BlockSlabGrass grass_slab = new BlockSlabGrass(BlockType.GRASS,"grass_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(0.6F);
+    public static BlockSlabGrass grass_doubleslab = new BlockSlabDoubleGrass(BlockType.GRASS,"grass_doubleslab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(0.6F);
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
@@ -94,6 +97,8 @@ public class ModBlocks {
 
                 smoothstone_slab,
                 smoothstone_doubleslab,
+                grass_slab,
+                grass_doubleslab,
 
                 /* Other */
                 chairOak
@@ -140,6 +145,7 @@ public class ModBlocks {
                 planks_pink.createItemBlock(),
 
                 smoothstone_slab.createItemSlab(smoothstone_slab,smoothstone_slab,smoothstone_doubleslab),
+                grass_slab.createItemSlab(grass_slab,grass_slab,grass_doubleslab),
 
                 /* Other */
                 chairOak.createItemBlock()
@@ -176,7 +182,7 @@ public class ModBlocks {
         planks_pink.registerItemModel(Item.getItemFromBlock(planks_pink));
 
         smoothstone_slab.registerItemModel(Item.getItemFromBlock(smoothstone_slab));
-        //smoothstone_doubleslab.registerItemModel(Item.getItemFromBlock(smoothstone_doubleslab));
+        grass_slab.registerItemModel(Item.getItemFromBlock(grass_slab));
 
         chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
     }

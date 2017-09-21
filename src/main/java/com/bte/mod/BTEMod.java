@@ -11,8 +11,21 @@ import com.bte.mod.proxy.CommonProxy;
 import com.bte.mod.recipe.ModRecipes;
 import com.bte.mod.world.ModWorldGen;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -28,6 +41,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import javax.annotation.Nullable;
 import java.util.logging.Logger;
 
 /**
@@ -74,6 +88,7 @@ public class BTEMod {
         LOGGER.info("Starting Intialization...");
         ModRecipes.init();
         EntityRegistry.registerModEntity(new ResourceLocation("bte:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
+        initColorsBlocksItems();
     }
 
     @Mod.EventHandler
@@ -100,5 +115,33 @@ public class BTEMod {
             ModItems.registerModels();
             ModBlocks.registerModels();
         }
+    }
+
+    @SuppressWarnings("all")
+    public void initColorsBlocksItems(){
+        final BlockColors blockcolors = Minecraft.getMinecraft().getBlockColors();
+        blockcolors.registerBlockColorHandler(new IBlockColor()
+        {
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+            {
+                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
+            }
+        }, ModBlocks.grass_slab);
+        blockcolors.registerBlockColorHandler(new IBlockColor()
+        {
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+            {
+                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
+            }
+        }, ModBlocks.grass_doubleslab);
+        final ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
+        itemcolors.registerItemColorHandler(new IItemColor()
+        {
+            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            {
+                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                return blockcolors.colorMultiplier(iblockstate, (IBlockAccess)null, (BlockPos)null, tintIndex);
+            }
+        }, ModBlocks.grass_slab, ModBlocks.grass_doubleslab);
     }
 }

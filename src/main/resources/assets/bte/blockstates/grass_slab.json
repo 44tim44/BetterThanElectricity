@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=bottom": { "model": "bte:grass_slab_half" },
+    "half=top": { "model": "bte:grass_slab_upper" }
+  }
+}

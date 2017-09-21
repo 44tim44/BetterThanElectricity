@@ -35,7 +35,6 @@ public class BlockSlabBase extends BlockSlab {
         this.name = name;
         this.type = type;
         this.useNeighborBrightness = true;
-        this.setHardness(2.0F);
         this.setResistance(5.0F);
 
         setUnlocalizedName(name);
@@ -115,5 +114,22 @@ public class BlockSlabBase extends BlockSlab {
         super.setCreativeTab(tab);
         return this;
     }
+
+    /**
+     * Sets how many hits it takes to break a block.
+     */
+    @Override
+    public BlockSlabBase setHardness(float hardness)
+    {
+        this.blockHardness = hardness;
+
+        if (this.blockResistance < hardness * 5.0F)
+        {
+            this.blockResistance = hardness * 5.0F;
+        }
+
+        return this;
+    }
+
 
 }
