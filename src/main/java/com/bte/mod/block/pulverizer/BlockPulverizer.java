@@ -1,8 +1,6 @@
 package com.bte.mod.block.pulverizer;
 
-/**
- * Created by Timeout on 2017-08-20.
- */
+
 
 import com.bte.mod.BTEMod;
 import com.bte.mod.ModGuiHandler;
@@ -29,11 +27,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
 import javax.annotation.Nullable;
 import java.util.Random;
 
-
+/**
+ * Created by Timmy on 2016-11-27.
+ */
 public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -50,6 +49,7 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
     /**
      * Get the Item that this Block should drop when harvested.
      */
+    @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.pulverizer);
@@ -133,12 +133,11 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
         }
     }
 
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (!world.isRemote)
+        {
             TileEntityPulverizer tileentity = getTileEntity(world, pos);
-            //player.displayGUIChest((TileEntityPulverizer)tileentity);
-            //player.addStat(StatList.FURNACE_INTERACTION);
             if (player.isSneaking()) {
             } else {
                 player.openGui(BTEMod.instance, ModGuiHandler.PULVERIZER, world, pos.getX(), pos.getY(), pos.getZ());
@@ -177,14 +176,15 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
         }
     }
 
-    @Override
     public Class<TileEntityPulverizer> getTileEntityClass() {
         return TileEntityPulverizer.class;
     }
 
-    @Nullable
-    @Override
-    public TileEntityPulverizer createTileEntity(World world, IBlockState state) {
+    /**
+     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     */
+    public TileEntityPulverizer createTileEntity(World world, IBlockState state)
+    {
         return new TileEntityPulverizer();
     }
 
@@ -304,7 +304,6 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
 
-    @Override
     public Item createItemBlock() {
         return new ItemBlock(this).setRegistryName(this.getRegistryName());
     }

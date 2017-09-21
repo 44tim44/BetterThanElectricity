@@ -13,8 +13,6 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -31,9 +29,8 @@ import javax.annotation.Nullable;
 /**
  * Created by Timmy on 2016-11-27.
  */
-public class TileEntityPulverizer extends TileEntityLockable implements
-        ITickable, ISidedInventory {
-
+public class TileEntityPulverizer extends TileEntityLockable implements ITickable, ISidedInventory
+{
     private static final int[] SLOTS_TOP = new int[] {0};
     private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
     private static final int[] SLOTS_SIDES = new int[] {1};
@@ -98,7 +95,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
-    public void setInventorySlotContents(int index, ItemStack stack)
+    public void setInventorySlotContents(int index, @Nullable ItemStack stack)
     {
         ItemStack itemstack = this.pulverizerItemStacks.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
@@ -122,8 +119,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
      */
     public String getName()
     {
-        return this.hasCustomName() ? this.furnaceCustomName :
-                "container.pulverizer";
+        return this.hasCustomName() ? this.furnaceCustomName : "container.pulverizer";
     }
 
     /**
@@ -235,7 +231,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements
                             ICharge charge = itemstack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null);
                             //ItemBattery battery = (ItemBattery) itemstack1.getItem();
                             charge.decreaseCharge();
-
                             /*
                             if (itemstack.isEmpty())
                             {
@@ -311,7 +306,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements
             else
             {
                 ItemStack itemstack1 = this.pulverizerItemStacks.get(2);
-
                 if (itemstack1.isEmpty())
                 {
                     return true;
@@ -373,7 +367,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
             if (item == ModItems.battery)
             {
                 ICharge charge = stack.getCapability(ChargeProvider.CHARGE_CAPABILITY, null);
-                if (charge.getCharge() > 0)
+                if(charge.getCharge() > 0)
                 {
                     return 10;
                 }

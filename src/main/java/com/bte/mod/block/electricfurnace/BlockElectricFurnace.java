@@ -142,7 +142,6 @@ public class BlockElectricFurnace extends BlockContainerBase {
             } else {
                 player.openGui(BTEMod.instance, ModGuiHandler.ELECFURNACE, world, pos.getX(), pos.getY(), pos.getZ());
             }
-
         }
         return true;
     }
@@ -155,20 +154,16 @@ public class BlockElectricFurnace extends BlockContainerBase {
 
         if (active)
         {
-            worldIn.setBlockState(pos, ModBlocks.electricFurnace_on
-                    .getDefaultState()
+            worldIn.setBlockState(pos, ModBlocks.electricFurnace_on.getDefaultState()
                     .withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.electricFurnace_on
-                    .getDefaultState()
+            worldIn.setBlockState(pos, ModBlocks.electricFurnace_on.getDefaultState()
                     .withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, ModBlocks.electricFurnace
-                    .getDefaultState()
+            worldIn.setBlockState(pos, ModBlocks.electricFurnace.getDefaultState()
                     .withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.electricFurnace
-                    .getDefaultState()
+            worldIn.setBlockState(pos, ModBlocks.electricFurnace.getDefaultState()
                     .withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
@@ -215,8 +210,7 @@ public class BlockElectricFurnace extends BlockContainerBase {
 
             if (tileentity instanceof TileEntityElectricFurnace)
             {
-                ((TileEntityElectricFurnace)tileentity).setCustomInventoryName(stack.getDisplayName
-                        ());
+                ((TileEntityElectricFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -232,9 +226,7 @@ public class BlockElectricFurnace extends BlockContainerBase {
 
             if (tileentity instanceof TileEntityElectricFurnace)
             {
-                InventoryHelper.dropInventoryItems(worldIn, pos,
-                        (TileEntityElectricFurnace)
-                        tileentity);
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityElectricFurnace) tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
@@ -311,7 +303,6 @@ public class BlockElectricFurnace extends BlockContainerBase {
     {
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
-
 
     public Item createItemBlock() {
         return new ItemBlock(this).setRegistryName(this.getRegistryName());

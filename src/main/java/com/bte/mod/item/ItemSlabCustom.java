@@ -5,6 +5,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -20,12 +21,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Timeout on 2017-09-21.
  */
-public class ItemSlabCustom extends ItemSlab {
+public class ItemSlabCustom extends ItemBlock {
     private final BlockSlab singleSlab;
     private final BlockSlab doubleSlab;
 
     public ItemSlabCustom(Block block, BlockSlab singleSlab, BlockSlab doubleSlab) {
-        super(block, singleSlab, doubleSlab);
+        super(block);
         this.singleSlab = singleSlab;
         this.doubleSlab = doubleSlab;
     }

@@ -1,39 +1,34 @@
 package com.bte.mod.block.electricfurnace;
 
-import javax.annotation.Nullable;
-
 import com.bte.mod.capability.ChargeProvider;
 import com.bte.mod.capability.ICharge;
-import com.bte.mod.item.ItemBattery;
 import com.bte.mod.item.ModItems;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.SlotFurnaceFuel;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
-import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.datafix.FixTypes;
+import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
+/**
+ * Created by Timmy on 2016-11-27.
+ */
 public class TileEntityElectricFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {
     private static final int[] SLOTS_TOP = new int[] {0};
@@ -140,6 +135,10 @@ public class TileEntityElectricFurnace extends TileEntityLockable implements ITi
         this.furnaceCustomName = p_145951_1_;
     }
 
+    public static void registerFixesFurnace(DataFixer fixer)
+    {
+        fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityElectricFurnace.class, new String[] {"Items"}));
+    }
 
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -326,6 +325,10 @@ public class TileEntityElectricFurnace extends TileEntityLockable implements ITi
         }
     }
 
+    /**
+     * Time to cook:
+     * Lower number = faster.
+     */
     public int getCookTime(@Nullable ItemStack stack)
     {
         return 200;
@@ -500,11 +503,11 @@ public class TileEntityElectricFurnace extends TileEntityLockable implements ITi
         {
             Item item = stack.getItem();
 
-            if (item == ModItems.battery )
+            if (item == ModItems.battery)
             {
-                //ItemBattery battery = (ItemBattery)stack.getItem();
-                ICharge charge = stack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null);
-                if(charge.getCharge() > 0) {
+                ICharge charge = stack.getCapability(ChargeProvider.CHARGE_CAPABILITY, null);
+                if(charge.getCharge() > 0)
+                {
                     return 10;
                 }
             }
