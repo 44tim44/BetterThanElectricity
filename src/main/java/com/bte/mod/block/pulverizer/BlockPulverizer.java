@@ -1,10 +1,9 @@
 package com.bte.mod.block.pulverizer;
 
 
-
 import com.bte.mod.BTEMod;
 import com.bte.mod.ModGuiHandler;
-import com.bte.mod.block.BlockTileEntity;
+import com.bte.mod.block.BlockContainerBase;
 import com.bte.mod.block.ModBlocks;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -33,7 +32,7 @@ import java.util.Random;
 /**
  * Created by Timmy on 2016-11-27.
  */
-public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
+public class BlockPulverizer extends BlockContainerBase {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private final boolean isActive;
@@ -137,7 +136,7 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
     {
         if (!world.isRemote)
         {
-            TileEntityPulverizer tileentity = getTileEntity(world, pos);
+            TileEntity tileentity = world.getTileEntity(pos);
             if (player.isSneaking()) {
             } else {
                 player.openGui(BTEMod.instance, ModGuiHandler.PULVERIZER, world, pos.getX(), pos.getY(), pos.getZ());
@@ -183,7 +182,7 @@ public class BlockPulverizer extends BlockTileEntity<TileEntityPulverizer> {
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
-    public TileEntityPulverizer createTileEntity(World world, IBlockState state)
+    public TileEntityPulverizer createNewTileEntity(World world, int meta)
     {
         return new TileEntityPulverizer();
     }

@@ -5,7 +5,6 @@ import com.bte.mod.BTEMod;
 import com.bte.mod.ModGuiHandler;
 import com.bte.mod.block.BlockContainerBase;
 import com.bte.mod.block.ModBlocks;
-import com.bte.mod.block.pulverizer.TileEntityPulverizer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
