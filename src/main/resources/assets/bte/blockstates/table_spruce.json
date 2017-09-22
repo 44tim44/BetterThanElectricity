@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "bte:table_spruce"
+    },
+    "inventory": {
+      "model": "bte:table_spruce"
+    }
+  }
+}

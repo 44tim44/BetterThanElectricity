@@ -59,8 +59,21 @@ public class ModBlocks {
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
+
     public static BlockChair chairOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_oak");
+    public static BlockChair chairSpruce = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_spruce");
+    public static BlockChair chairBirch = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_birch");
+    public static BlockChair chairJungle = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_jungle");
+    public static BlockChair chairAcacia = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_acacia");
+    public static BlockChair chairDarkOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_dark_oak");
+
     public static BlockTable tableOak = new BlockTable(Material.WOOD,"table_oak");
+    public static BlockTable tableSpruce = new BlockTable(Material.WOOD,"table_spruce");
+    public static BlockTable tableBirch = new BlockTable(Material.WOOD,"table_birch");
+    public static BlockTable tableJungle = new BlockTable(Material.WOOD,"table_jungle");
+    public static BlockTable tableAcacia = new BlockTable(Material.WOOD,"table_acacia");
+    public static BlockTable tableDarkOak = new BlockTable(Material.WOOD,"table_dark_oak");
+
 
 
     public static void register(IForgeRegistry<Block> registry) {
@@ -105,7 +118,17 @@ public class ModBlocks {
 
                 /* Other */
                 chairOak,
-                tableOak
+                chairSpruce,
+                chairBirch,
+                chairJungle,
+                chairAcacia,
+                chairDarkOak,
+                tableOak,
+                tableSpruce,
+                tableBirch,
+                tableJungle,
+                tableAcacia,
+                tableDarkOak
 
         );
 
@@ -154,7 +177,17 @@ public class ModBlocks {
 
                 /* Other */
                 chairOak.createItemBlock(),
-                tableOak.createItemBlock()
+                chairSpruce.createItemBlock(),
+                chairBirch.createItemBlock(),
+                chairJungle.createItemBlock(),
+                chairAcacia.createItemBlock(),
+                chairDarkOak.createItemBlock(),
+                tableOak.createItemBlock(),
+                tableSpruce.createItemBlock(),
+                tableBirch.createItemBlock(),
+                tableJungle.createItemBlock(),
+                tableAcacia.createItemBlock(),
+                tableDarkOak.createItemBlock()
         );
     }
 
@@ -191,7 +224,19 @@ public class ModBlocks {
         grass_slab.registerItemModel(Item.getItemFromBlock(grass_slab));
 
         chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
+        chairSpruce.registerItemModel(Item.getItemFromBlock(chairSpruce));
+        chairBirch.registerItemModel(Item.getItemFromBlock(chairBirch));
+        chairJungle.registerItemModel(Item.getItemFromBlock(chairJungle));
+        chairAcacia.registerItemModel(Item.getItemFromBlock(chairAcacia));
+        chairDarkOak.registerItemModel(Item.getItemFromBlock(chairDarkOak));
         tableOak.registerItemModel(Item.getItemFromBlock(tableOak));
+        tableSpruce.registerItemModel(Item.getItemFromBlock(tableSpruce));
+        tableBirch.registerItemModel(Item.getItemFromBlock(tableBirch));
+        tableJungle.registerItemModel(Item.getItemFromBlock(tableJungle));
+        tableAcacia.registerItemModel(Item.getItemFromBlock(tableAcacia));
+        tableDarkOak.registerItemModel(Item.getItemFromBlock(tableDarkOak));
+
+
     }
 
 }

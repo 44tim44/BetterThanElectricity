@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "bte:table_jungle"
+    },
+    "inventory": {
+      "model": "bte:table_jungle"
+    }
+  }
+}

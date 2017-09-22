@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "bte:table_dark_oak"
+    },
+    "inventory": {
+      "model": "bte:table_dark_oak"
+    }
+  }
+}
