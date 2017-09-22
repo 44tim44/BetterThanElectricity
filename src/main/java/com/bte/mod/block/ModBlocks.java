@@ -9,6 +9,7 @@ import com.bte.mod.block.counter.BlockCounter;
 import com.bte.mod.block.electricfurnace.BlockElectricFurnace;
 import com.bte.mod.block.pulverizer.BlockPulverizer;
 import com.bte.mod.block.solarpanel.BlockSolarPanel;
+import com.bte.mod.block.table.BlockTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -58,7 +59,9 @@ public class ModBlocks {
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
-    public static BlockHorizontalBase chairOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_oak");
+    public static BlockChair chairOak = new BlockChair(Material.WOOD, SoundType.WOOD,"chair_oak");
+    public static BlockTable tableOak = new BlockTable(Material.WOOD,"table_oak");
+
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -101,13 +104,15 @@ public class ModBlocks {
                 grass_doubleslab,
 
                 /* Other */
-                chairOak
+                chairOak,
+                tableOak
 
         );
 
         GameRegistry.registerTileEntity(pulverizer.getTileEntityClass(), pulverizer.getRegistryName().toString());
         GameRegistry.registerTileEntity(electricFurnace.getTileEntityClass(), electricFurnace.getRegistryName().toString());
         GameRegistry.registerTileEntity(solarPanel.getTileEntityClass(), solarPanel.getRegistryName().toString());
+        GameRegistry.registerTileEntity(tableOak.getTileEntityClass(), tableOak.getRegistryName().toString());
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
@@ -148,7 +153,8 @@ public class ModBlocks {
                 grass_slab.createItemSlab(grass_slab,grass_slab,grass_doubleslab),
 
                 /* Other */
-                chairOak.createItemBlock()
+                chairOak.createItemBlock(),
+                tableOak.createItemBlock()
         );
     }
 
@@ -185,6 +191,7 @@ public class ModBlocks {
         grass_slab.registerItemModel(Item.getItemFromBlock(grass_slab));
 
         chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
+        tableOak.registerItemModel(Item.getItemFromBlock(tableOak));
     }
 
 }

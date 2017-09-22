@@ -7,6 +7,8 @@ import com.bte.mod.capability.ChargeStorage;
 import com.bte.mod.capability.ICharge;
 import com.bte.mod.entity.EntitySittableBlock;
 import com.bte.mod.item.ModItems;
+import com.bte.mod.network.PacketRequestUpdatePedestal;
+import com.bte.mod.network.PacketUpdatePedestal;
 import com.bte.mod.proxy.CommonProxy;
 import com.bte.mod.recipe.ModRecipes;
 import com.bte.mod.world.ModWorldGen;
@@ -38,8 +40,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 import java.util.logging.Logger;
@@ -72,6 +76,8 @@ public class BTEMod {
     @Mod.Instance
     public static BTEMod instance;
 
+    public static SimpleNetworkWrapper network;
+
     public static final Logger LOGGER = Logger.getLogger(MODID);
 
     @Mod.EventHandler
@@ -81,6 +87,14 @@ public class BTEMod {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new ModGuiHandler());
         CapabilityManager.INSTANCE.register(ICharge.class, new ChargeStorage(), Charge.class);
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
+
+        proxy.registerRenderers();
+
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+        network.registerMessage(new PacketUpdatePedestal.Handler(), PacketUpdatePedestal.class, 0, Side.CLIENT);
+        network.registerMessage(new PacketRequestUpdatePedestal.Handler(), PacketRequestUpdatePedestal.class, 1, Side.SERVER);
+
+        proxy.preInit(event);
     }
 
     @Mod.EventHandler
@@ -89,11 +103,13 @@ public class BTEMod {
         ModRecipes.init();
         EntityRegistry.registerModEntity(new ResourceLocation("bte:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
         initColorsBlocksItems();
+        proxy.init(event);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event){
         LOGGER.info("Starting Post-Intialization...");
+        proxy.postInit(event);
     }
 
     @Mod.EventBusSubscriber

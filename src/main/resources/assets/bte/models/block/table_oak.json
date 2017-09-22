@@ -1,0 +1,6 @@
+{
+  "parent": "bte:block/table",
+  "textures": {
+    "0": "blocks/planks_oak"
+  }
+}
