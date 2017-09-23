@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=bottom": { "model": "bte:planks_slab_lime_half" },
+    "half=top": { "model": "bte:planks_slab_lime_upper" }
+  }
+}
