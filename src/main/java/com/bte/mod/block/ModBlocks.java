@@ -89,6 +89,8 @@ public class ModBlocks {
     public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setHardness(2.0F);
     public static BlockSlabGrass grass_slab = new BlockSlabGrass(BlockType.GRASS,"grass_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(0.6F);
     public static BlockSlabGrass grass_doubleslab = new BlockSlabDoubleGrass(BlockType.GRASS,"grass_doubleslab").setHardness(0.6F);
+    public static BlockSlabBase grass_snowed_slab = new BlockSlabBase(BlockType.GRASS,"grass_snowed_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(0.6F);
+    public static BlockSlabBase grass_snowed_doubleslab = new BlockSlabDoubleBase(BlockType.GRASS,"grass_snowed_doubleslab").setHardness(0.6F);
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
@@ -181,6 +183,8 @@ public class ModBlocks {
                 smoothstone_doubleslab,
                 grass_slab,
                 grass_doubleslab,
+                grass_snowed_slab,
+                grass_snowed_doubleslab,
 
                 /* Other */
                 chairOak,
@@ -257,6 +261,7 @@ public class ModBlocks {
 
                 smoothstone_slab.createItemSlab(smoothstone_slab,smoothstone_slab,smoothstone_doubleslab),
                 grass_slab.createItemSlab(grass_slab,grass_slab,grass_doubleslab),
+                grass_snowed_slab.createItemSlab(grass_snowed_slab,grass_snowed_slab,grass_snowed_doubleslab),
 
                 /* Other */
                 chairOak.createItemBlock(),
@@ -322,6 +327,7 @@ public class ModBlocks {
 
         smoothstone_slab.registerItemModel(Item.getItemFromBlock(smoothstone_slab));
         grass_slab.registerItemModel(Item.getItemFromBlock(grass_slab));
+        grass_snowed_slab.registerItemModel(Item.getItemFromBlock(grass_snowed_slab));
 
         chairOak.registerItemModel(Item.getItemFromBlock(chairOak));
         chairSpruce.registerItemModel(Item.getItemFromBlock(chairSpruce));
