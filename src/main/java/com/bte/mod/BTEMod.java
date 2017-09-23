@@ -6,6 +6,7 @@ import com.bte.mod.capability.Charge;
 import com.bte.mod.capability.ChargeStorage;
 import com.bte.mod.capability.ICharge;
 import com.bte.mod.entity.EntitySittableBlock;
+import com.bte.mod.event.EventHandlerCommon;
 import com.bte.mod.item.ModItems;
 import com.bte.mod.network.PacketRequestUpdatePedestal;
 import com.bte.mod.network.PacketUpdatePedestal;
@@ -33,6 +34,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -103,6 +105,7 @@ public class BTEMod {
         ModRecipes.init();
         EntityRegistry.registerModEntity(new ResourceLocation("bte:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
         initColorsBlocksItems();
+        //MinecraftForge.EVENT_BUS.register(new EventHandlerCommon());
         proxy.init(event);
     }
 

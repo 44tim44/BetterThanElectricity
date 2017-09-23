@@ -10,6 +10,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,9 +51,30 @@ public class BlockSlabGrass extends BlockSlabBase {
     {
         if (!worldIn.isRemote)
         {
-            if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2)
+            IBlockState blockAbove = worldIn.getBlockState(pos.up());
+
+            if(worldIn.isRaining() && worldIn.getBiome(pos).isSnowyBiome())
             {
-                worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+                if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+                    worldIn.setBlockState(pos, ModBlocks.grass_snowed_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
+                }
+                else
+                {
+                    worldIn.setBlockState(pos, ModBlocks.grass_snowed_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
+                }
+            }
+
+            if (worldIn.getLightFromNeighbors(pos.up()) < 4 && blockAbove.getLightOpacity(worldIn, pos.up()) > 2 ||
+                    blockAbove.getBlock() instanceof BlockSlabBase && blockAbove.getValue(HALF)== BlockSlab.EnumBlockHalf.BOTTOM)
+            {
+                if(worldIn.getBlockState(pos).getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+                {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
+                }
+                else
+                {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
+                }
             }
             else
             {
@@ -73,6 +95,16 @@ public class BlockSlabGrass extends BlockSlabBase {
                         if (iblockstate1.getBlock() == Blocks.DIRT && iblockstate1.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.DIRT && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
                         {
                             worldIn.setBlockState(blockpos, Blocks.GRASS.getDefaultState());
+                        }
+                        else if (iblockstate1.getBlock() == ModBlocks.dirt_slab  && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
+                        {
+                            if(iblockstate1.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+                                worldIn.setBlockState(blockpos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
+                            }
+                            else
+                            {
+                                worldIn.setBlockState(blockpos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
+                            }
                         }
                     }
                 }
@@ -141,5 +173,14 @@ public class BlockSlabGrass extends BlockSlabBase {
         }
 
         return this;
+    }
+
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (this.isDouble())
+        {
+            worldIn.setBlockState(pos,Blocks.GRASS.getDefaultState());
+        }
     }
 }

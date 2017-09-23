@@ -13,6 +13,7 @@ public class ModEnums
     public enum BlockType implements IStringSerializable {
         SMOOTHSTONE("smoothstone",MaterialType.ROCK),
         GRASS("grass",MaterialType.GRASS),
+        DIRT("dirt",MaterialType.GROUND),
         WOOD("wood", MaterialType.WOOD),
         COPPER("copper",MaterialType.IRON),
         TIN("tin",MaterialType.IRON),

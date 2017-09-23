@@ -1,10 +1,16 @@
 package com.bte.mod.block;
 
 import com.bte.mod.ModEnums.BlockType;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,18 +27,13 @@ public class BlockSlabDoubleGrass extends BlockSlabGrass {
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        switch (type) {
-            case GRASS:
-                return Item.getItemFromBlock(ModBlocks.grass_slab);
-            default:
-                return Item.getItemFromBlock(Blocks.AIR);
-        }
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(ModBlocks.grass_slab);
     }
 
     @Override
     public boolean isDouble() {
         return true;
     }
-
 }
