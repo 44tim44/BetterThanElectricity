@@ -28,6 +28,7 @@ import net.minecraft.world.World;
 public class BlockSlabVerticalBase extends BlockSlab {
 
     public static final PropertyEnum<BlockSlabVerticalBase.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBase.EnumPosition>create("half", BlockSlabVerticalBase.EnumPosition.class);
+    public static final PropertyEnum<BlockSlabVerticalBase.EnumShape> SHAPE = PropertyEnum.<BlockSlabVerticalBase.EnumShape>create("shape", BlockSlabVerticalBase.EnumShape.class);
     protected static final AxisAlignedBB AABB_NORTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
     protected static final AxisAlignedBB AABB_SOUTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_EAST_HALF = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
@@ -302,6 +303,30 @@ public class BlockSlabVerticalBase extends BlockSlab {
         private final String name;
 
         private EnumPosition(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+    }
+
+    public static enum EnumShape implements IStringSerializable
+    {
+        STRAIGHT("straight"),
+        INNER_CORNER("inner_corner"),
+        OUTER_CORNER("outer_corner");
+
+        private final String name;
+
+        private EnumShape(String name)
         {
             this.name = name;
         }
