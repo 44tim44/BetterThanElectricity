@@ -2,9 +2,7 @@ package com.bte.mod.block;
 
 import com.bte.mod.BTEMod;
 import com.bte.mod.ModEnums;
-import com.bte.mod.item.ItemSlabCustom;
 import com.bte.mod.item.ItemVerticalSlab;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -25,24 +23,19 @@ import net.minecraft.world.World;
 /**
  * Created by Timeout on 2017-09-24.
  */
-public class BlockSlabVerticalBase extends BlockSlab {
+public class BlockSlabVerticalBaseBackup extends BlockSlab {
 
-    public static final PropertyEnum<BlockSlabVerticalBase.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBase.EnumPosition>create("half", BlockSlabVerticalBase.EnumPosition.class);
-    public static final PropertyEnum<BlockSlabVerticalBase.EnumShape> SHAPE = PropertyEnum.<BlockSlabVerticalBase.EnumShape>create("shape", BlockSlabVerticalBase.EnumShape.class);
+    public static final PropertyEnum<BlockSlabVerticalBaseBackup.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBaseBackup.EnumPosition>create("half", BlockSlabVerticalBaseBackup.EnumPosition.class);
+    public static final PropertyEnum<BlockSlabVerticalBaseBackup.EnumShape> SHAPE = PropertyEnum.<BlockSlabVerticalBaseBackup.EnumShape>create("shape", BlockSlabVerticalBaseBackup.EnumShape.class);
     protected static final AxisAlignedBB AABB_NORTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
     protected static final AxisAlignedBB AABB_SOUTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_EAST_HALF = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_WEST_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 1.0D);
 
-    protected static final AxisAlignedBB AABB_NORTHWEST_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 0.5D);
-    protected static final AxisAlignedBB AABB_NORTHEAST_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
-    protected static final AxisAlignedBB AABB_SOUTHWEST_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 0.5D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB AABB_SOUTHEAST_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
-
     protected String name;
     protected final ModEnums.BlockType type;
 
-    public BlockSlabVerticalBase(ModEnums.BlockType type, String name) {
+    public BlockSlabVerticalBaseBackup(ModEnums.BlockType type, String name) {
         super(type.getMaterialType().getMaterial());
         this.setSoundType(type.getMaterialType().getSound());
 
@@ -57,7 +50,7 @@ public class BlockSlabVerticalBase extends BlockSlab {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return this.isDouble() ? new BlockStateContainer(this) : new BlockStateContainer(this, new IProperty[] {POSITION, SHAPE}) ;
+        return this.isDouble() ? new BlockStateContainer(this) : new BlockStateContainer(this, POSITION);
     }
 
     @Override
@@ -69,13 +62,13 @@ public class BlockSlabVerticalBase extends BlockSlab {
             case 0:
                 return iblockstate;
             case 1:
-                return iblockstate.withProperty(POSITION,EnumPosition.NORTH);
+                return iblockstate.withProperty(POSITION, EnumPosition.NORTH);
             case 2:
-                return iblockstate.withProperty(POSITION,EnumPosition.SOUTH);
+                return iblockstate.withProperty(POSITION, EnumPosition.SOUTH);
             case 3:
-                return iblockstate.withProperty(POSITION,EnumPosition.EAST);
+                return iblockstate.withProperty(POSITION, EnumPosition.EAST);
             case 4:
-                return iblockstate.withProperty(POSITION,EnumPosition.WEST);
+                return iblockstate.withProperty(POSITION, EnumPosition.WEST);
         }
         return iblockstate;
     }
@@ -272,12 +265,12 @@ public class BlockSlabVerticalBase extends BlockSlab {
         BTEMod.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
-    public Item createItemSlab(BlockSlabVerticalBase block, BlockSlabVerticalBase singleSlab, BlockSlabVerticalBase doubleSlab) {
+    public Item createItemSlab(BlockSlabVerticalBaseBackup block, BlockSlabVerticalBaseBackup singleSlab, BlockSlabVerticalBaseBackup doubleSlab) {
         return new ItemVerticalSlab(this,singleSlab,doubleSlab).setRegistryName(this.getRegistryName());
     }
 
     @Override
-    public BlockSlabVerticalBase setCreativeTab(CreativeTabs tab) {
+    public BlockSlabVerticalBaseBackup setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
     }
@@ -286,7 +279,7 @@ public class BlockSlabVerticalBase extends BlockSlab {
      * Sets how many hits it takes to break a block.
      */
     @Override
-    public BlockSlabVerticalBase setHardness(float hardness)
+    public BlockSlabVerticalBaseBackup setHardness(float hardness)
     {
         this.blockHardness = hardness;
 
