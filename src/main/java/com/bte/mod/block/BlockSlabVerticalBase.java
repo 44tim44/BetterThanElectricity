@@ -4,14 +4,17 @@ import com.bte.mod.BTEMod;
 import com.bte.mod.ModEnums;
 import com.bte.mod.item.ItemSlabCustom;
 import com.bte.mod.item.ItemVerticalSlab;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,6 +24,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by Timeout on 2017-09-24.
@@ -34,10 +42,10 @@ public class BlockSlabVerticalBase extends BlockSlab {
     protected static final AxisAlignedBB AABB_EAST_HALF = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_WEST_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 1.0D);
 
-    protected static final AxisAlignedBB AABB_NORTHWEST_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 0.5D);
-    protected static final AxisAlignedBB AABB_NORTHEAST_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
-    protected static final AxisAlignedBB AABB_SOUTHWEST_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 0.5D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB AABB_SOUTHEAST_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_NORTHWEST_OUTER_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 0.5D);
+    protected static final AxisAlignedBB AABB_NORTHEAST_OUTER_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
+    protected static final AxisAlignedBB AABB_SOUTHWEST_OUTER_CORNER = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 0.5D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_SOUTHEAST_OUTER_CORNER = new AxisAlignedBB(0.5D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
 
     protected String name;
     protected final ModEnums.BlockType type;
@@ -100,7 +108,159 @@ public class BlockSlabVerticalBase extends BlockSlab {
         return i;
     }
 
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        return state.withProperty(SHAPE, getPaneShape(state, worldIn, pos));
+    }
 
+    private static BlockSlabVerticalBase.EnumShape getPaneShape(IBlockState state, IBlockAccess access, BlockPos pos)
+    {
+        EnumPosition enumPosition = state.getValue(POSITION);
+
+        IBlockState iblockstate = access.getBlockState(pos.offset(enumPosition.getFacing()));
+
+        if(isBlockPane(iblockstate))
+        {
+            EnumPosition enumPosition1 = iblockstate.getValue(POSITION);
+
+            if (enumPosition1 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition1.getFacing().getOpposite()))
+            {
+                if (enumPosition1 == enumPosition.rotateYCCW())
+                {
+                    return EnumShape.OUTER_CORNER_LEFT;
+                }
+
+                return EnumShape.OUTER_CORNER_RIGHT;
+            }
+        }
+
+        IBlockState iblockstate1 = access.getBlockState(pos.offset(enumPosition.getFacing().getOpposite()));
+        if(isBlockPane(iblockstate))
+        {
+            EnumPosition enumPosition2 = iblockstate1.getValue(POSITION);
+
+            if (enumPosition2 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition2.getFacing()))
+            {
+                if (enumPosition2 == enumPosition.rotateYCCW())
+                {
+                    return EnumShape.INNER_CORNER_LEFT;
+                }
+
+                return EnumShape.INNER_CORNER_RIGHT;
+            }
+        }
+
+        return EnumShape.STRAIGHT;
+    }
+
+    private static boolean isDifferentPanes(IBlockState state, IBlockAccess access, BlockPos pos, EnumFacing facing)
+    {
+        IBlockState iblockstate = access.getBlockState(pos.offset(facing));
+        return !isBlockPane(iblockstate) || iblockstate.getValue(POSITION) != state.getValue(POSITION);
+    }
+
+    public static boolean isBlockPane(IBlockState state)
+    {
+        return state.getBlock() instanceof BlockSlabVerticalBase;
+    }
+
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    {
+        if (!p_185477_7_)
+        {
+            state = this.getActualState(state, worldIn, pos);
+        }
+
+        for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state))
+        {
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
+        }
+    }
+
+    private static List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
+    {
+        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        if (state.isFullCube())
+        {
+            list.add(FULL_BLOCK_AABB);
+            return list;
+        }
+        else
+        {
+            EnumPosition position = state.getValue(POSITION);
+            EnumShape shape = state.getValue(SHAPE);
+            switch (position) {
+                case NORTH:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            list.add(AABB_NORTH_HALF);
+                        case OUTER_CORNER_LEFT:
+                            list.add(AABB_NORTHWEST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            list.add(AABB_NORTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            list.add(AABB_NORTH_HALF);
+                            list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            list.add(AABB_NORTH_HALF);
+                            list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                    }
+                case SOUTH:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            list.add(AABB_SOUTH_HALF);
+                        case OUTER_CORNER_LEFT:
+                            list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            list.add(AABB_SOUTH_HALF);
+                            list.add(AABB_NORTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            list.add(AABB_SOUTH_HALF);
+                            list.add(AABB_NORTHWEST_OUTER_CORNER);
+                    }
+                case EAST:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            list.add(AABB_EAST_HALF);
+                        case OUTER_CORNER_LEFT:
+                            list.add(AABB_NORTHEAST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            list.add(AABB_EAST_HALF);
+                            list.add(AABB_NORTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            list.add(AABB_EAST_HALF);
+                            list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                    }
+                case WEST:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            list.add(AABB_WEST_HALF);
+                        case OUTER_CORNER_LEFT:
+                            list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            list.add(AABB_NORTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            list.add(AABB_WEST_HALF);
+                            list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            list.add(AABB_WEST_HALF);
+                            list.add(AABB_NORTHEAST_OUTER_CORNER);
+                    }
+            }
+            return list;
+        }
+    }
+
+
+    /*
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
@@ -113,6 +273,16 @@ public class BlockSlabVerticalBase extends BlockSlab {
             switch (state.getValue(POSITION))
             {
                 case NORTH:
+                    switch (state.getValue(SHAPE))
+                    {
+                        case STRAIGHT:
+                        default:
+                            return AABB_NORTH_HALF;
+                        case OUTER_CORNER_LEFT:
+                            return AABB_NORTHWEST_OUTER_CORNER;
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_NORTHEAST_OUTER_CORNER
+                    }
                     return AABB_NORTH_HALF;
                 case SOUTH:
                     return AABB_SOUTH_HALF;
@@ -124,6 +294,7 @@ public class BlockSlabVerticalBase extends BlockSlab {
         }
         return AABB_NORTH_HALF;
     }
+    */
 
     /**
      * Determines if the block is solid enough on the top side to support other blocks, like redstone components.
@@ -170,6 +341,33 @@ public class BlockSlabVerticalBase extends BlockSlab {
             }
             return BlockFaceShape.UNDEFINED;
         }
+    }
+
+    /**
+     * Used to determine ambient occlusion and culling when rebuilding chunks for render
+     */
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return isDouble();
+    }
+
+    public boolean isFullCube(IBlockState state)
+    {
+        return isDouble();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        if (this.isDouble())
+        {
+            return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        }
+        else if (side != EnumFacing.UP && side != EnumFacing.DOWN && !super.shouldSideBeRendered(blockState, blockAccess, pos, side))
+        {
+            return false;
+        }
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override
@@ -321,13 +519,47 @@ public class BlockSlabVerticalBase extends BlockSlab {
         {
             return this.name;
         }
+
+        public EnumPosition rotateYCCW(){
+            switch (this) {
+                case NORTH: return WEST;
+                case EAST: return NORTH;
+                case SOUTH: return EAST;
+                case WEST: return SOUTH;
+                default: throw new IllegalStateException("Unable to get CCW Position of " + this);
+            }
+        }
+
+        public EnumPosition rotateY()
+        {
+            switch (this) {
+                case NORTH: return EAST;
+                case EAST: return SOUTH;
+                case SOUTH: return WEST;
+                case WEST: return NORTH;
+                default: throw new IllegalStateException("Unable to get Y-rotated Position of " + this);
+            }
+        }
+
+        public EnumFacing getFacing(){
+            switch(this)
+            {
+                case NORTH: return EnumFacing.NORTH;
+                case SOUTH: return EnumFacing.SOUTH;
+                case EAST: return EnumFacing.EAST;
+                case WEST: return EnumFacing.WEST;
+                default: throw new IllegalStateException("Unable to get facing of " + this);
+            }
+        }
     }
 
     public static enum EnumShape implements IStringSerializable
     {
         STRAIGHT("straight"),
-        INNER_CORNER("inner_corner"),
-        OUTER_CORNER("outer_corner");
+        INNER_CORNER_LEFT("inner_corner_left"),
+        INNER_CORNER_RIGHT("inner_corner_right"),
+        OUTER_CORNER_LEFT("outer_corner_left"),
+        OUTER_CORNER_RIGHT("outer_corner_right");
 
         private final String name;
 
@@ -345,5 +577,6 @@ public class BlockSlabVerticalBase extends BlockSlab {
         {
             return this.name;
         }
+
     }
 }
