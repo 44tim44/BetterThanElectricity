@@ -44,14 +44,38 @@ public class BlockSlabGrassSnowed extends BlockSlabBase {
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) > 11)
-        {
-            if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
-                worldIn.setBlockState(pos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
+        if (!worldIn.isRemote && !isDouble()) {
+            IBlockState blockThis = worldIn.getBlockState(pos);
+            IBlockState blockAbove = worldIn.getBlockState(pos.up());
+            IBlockState blockBelow = worldIn.getBlockState(pos.down());
+
+            // Transforms block below to dirt if it's a grassblock
+            if (blockBelow == Blocks.GRASS.getDefaultState() && blockThis.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM) {
+                worldIn.setBlockState(pos.down(), Blocks.DIRT.getDefaultState());
             }
-            else
-            {
-                worldIn.setBlockState(pos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
+
+            // Transforms this block to dirt slab if no light from sky
+            if (worldIn.getLightFromNeighbors(pos.up()) < 4 && blockAbove.getLightOpacity(worldIn, pos.up()) > 2) {
+                if (worldIn.getBlockState(pos).getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
+                } else {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                }
+            }
+            // Transforms this block to dirt slab if block above is a slab
+            else if (blockAbove.getBlock() instanceof BlockSlabBase && blockAbove.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM) {
+                if (worldIn.getBlockState(pos).getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
+                }
+            }
+
+            // Melts the slab to a normal grass slab if heat/light is present
+            if (worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) > 11) {
+                if (state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+                    worldIn.setBlockState(pos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
+                } else {
+                    worldIn.setBlockState(pos, ModBlocks.grass_slab.getDefaultState().withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                }
             }
         }
     }

@@ -47,13 +47,21 @@ public class BlockSlabGrass extends BlockSlabBase {
         return state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.SNOW || block == Blocks.SNOW_LAYER));
     }
 
+    @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!worldIn.isRemote)
+        if (!worldIn.isRemote && !isDouble())
         {
+            IBlockState blockThis = worldIn.getBlockState(pos);
             IBlockState blockAbove = worldIn.getBlockState(pos.up());
-
-            if(worldIn.isRaining() && worldIn.getBiome(pos).isSnowyBiome())
+            IBlockState blockBelow = worldIn.getBlockState(pos.down());
+            // Transforms block below to dirt if it's a grassblock
+            if(blockBelow == Blocks.GRASS.getDefaultState() && blockThis.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM)
+            {
+                worldIn.setBlockState(pos.down(),Blocks.DIRT.getDefaultState());
+            }
+            // Transforms this block to snowy grass slab if it's snowing
+            if(worldIn.isRaining() && worldIn.getBiome(pos).isSnowyBiome() && worldIn.canBlockSeeSky(pos.offset(EnumFacing.UP)))
             {
                 if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
                     worldIn.setBlockState(pos, ModBlocks.grass_snowed_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
@@ -63,9 +71,8 @@ public class BlockSlabGrass extends BlockSlabBase {
                     worldIn.setBlockState(pos, ModBlocks.grass_snowed_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
                 }
             }
-
-            if (worldIn.getLightFromNeighbors(pos.up()) < 4 && blockAbove.getLightOpacity(worldIn, pos.up()) > 2 ||
-                    blockAbove.getBlock() instanceof BlockSlabBase && blockAbove.getValue(HALF)== BlockSlab.EnumBlockHalf.BOTTOM)
+            // Transforms this block to dirt slab if no light from sky
+            if (worldIn.getLightFromNeighbors(pos.up()) < 4 && blockAbove.getLightOpacity(worldIn, pos.up()) > 2)
             {
                 if(worldIn.getBlockState(pos).getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
                 {
@@ -76,6 +83,15 @@ public class BlockSlabGrass extends BlockSlabBase {
                     worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.BOTTOM));
                 }
             }
+            // Transforms this block to dirt slab if block above is a slab
+            else if (blockAbove.getBlock() instanceof BlockSlabBase && blockAbove.getValue(HALF)== BlockSlab.EnumBlockHalf.BOTTOM)
+            {
+                if(worldIn.getBlockState(pos).getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+                {
+                    worldIn.setBlockState(pos, ModBlocks.dirt_slab.getDefaultState().withProperty(HALF,BlockSlab.EnumBlockHalf.TOP));
+                }
+            }
+            // Grass Spread to surrounding blocks
             else
             {
                 if (worldIn.getLightFromNeighbors(pos.up()) >= 9)

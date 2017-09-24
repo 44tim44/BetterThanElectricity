@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "half=north": { "model": "bte:smoothstone_vertical_slab_north" },
+    "half=south": { "model": "bte:smoothstone_vertical_slab_north", "y": 180 },
+    "half=west":  { "model": "bte:smoothstone_vertical_slab_north", "y": 270 },
+    "half=east":  { "model": "bte:smoothstone_vertical_slab_north", "y": 90 }
+  }
+}
