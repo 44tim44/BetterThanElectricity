@@ -22,10 +22,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Timeout on 2017-09-21.
  */
 public class ItemVerticalSlab extends ItemBlock {
-    private final BlockSlab singleSlab;
-    private final BlockSlab doubleSlab;
+    private final BlockSlabVerticalBase singleSlab;
+    private final BlockSlabVerticalBase doubleSlab;
 
-    public ItemVerticalSlab(Block block, BlockSlab singleSlab, BlockSlab doubleSlab) {
+    public ItemVerticalSlab(BlockSlabVerticalBase block, BlockSlabVerticalBase singleSlab, BlockSlabVerticalBase doubleSlab) {
         super(block);
         this.singleSlab = singleSlab;
         this.doubleSlab = doubleSlab;

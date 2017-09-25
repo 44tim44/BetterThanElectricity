@@ -2,9 +2,15 @@ package com.bte.mod.block;
 
 import com.bte.mod.ModEnums;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -27,7 +33,29 @@ public class BlockSlabVerticalBaseDouble extends BlockSlabVerticalBase
     }
 
     @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    {
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
+    }
+
+    @Override
     public boolean isDouble() {
         return true;
+    }
+
+    /**
+     * Sets how many hits it takes to break a block.
+     */
+    @Override
+    public BlockSlabVerticalBaseDouble setHardness(float hardness)
+    {
+        this.blockHardness = hardness;
+
+        if (this.blockResistance < hardness * 5.0F)
+        {
+            this.blockResistance = hardness * 5.0F;
+        }
+
+        return this;
     }
 }

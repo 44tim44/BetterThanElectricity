@@ -95,7 +95,7 @@ public class ModBlocks {
     public static BlockSlabDirt dirt_doubleslab = new BlockSlabDoubleDirt(BlockType.DIRT,"dirt_doubleslab");
 
     public static BlockSlabVerticalBase smoothstone_vertical_slab = new BlockSlabVerticalBase(BlockType.SMOOTHSTONE,"smoothstone_vertical_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabVerticalBase smoothstone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.SMOOTHSTONE,"smoothstone_vertical_doubleslab").setHardness(2.0F);
+    public static BlockSlabVerticalBaseDouble smoothstone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.SMOOTHSTONE,"smoothstone_vertical_doubleslab").setHardness(2.0F);
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
 

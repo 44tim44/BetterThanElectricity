@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Created by Timeout on 2017-09-24.
  */
-public class BlockSlabVerticalBase extends BlockSlab {
+public class BlockSlabVerticalBase extends Block {
 
     public static final PropertyEnum<BlockSlabVerticalBase.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBase.EnumPosition>create("half", BlockSlabVerticalBase.EnumPosition.class);
     public static final PropertyEnum<BlockSlabVerticalBase.EnumShape> SHAPE = PropertyEnum.<BlockSlabVerticalBase.EnumShape>create("shape", BlockSlabVerticalBase.EnumShape.class);
@@ -91,8 +91,6 @@ public class BlockSlabVerticalBase extends BlockSlab {
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
-
         if(!isDouble()) {
             switch (state.getValue(POSITION)) {
                 case NORTH:
@@ -103,14 +101,26 @@ public class BlockSlabVerticalBase extends BlockSlab {
                     return 3;
                 case WEST:
                     return 4;
+                default:
+                    return 1;
             }
         }
-        return i;
+        else
+        {
+            return 0;
+        }
     }
 
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return state.withProperty(SHAPE, getPaneShape(state, worldIn, pos));
+        if(isDouble())
+        {
+            return state;
+        }
+        else
+        {
+            return state.withProperty(SHAPE, getPaneShape(state, worldIn, pos));
+        }
     }
 
     private static BlockSlabVerticalBase.EnumShape getPaneShape(IBlockState state, IBlockAccess access, BlockPos pos)
@@ -125,11 +135,12 @@ public class BlockSlabVerticalBase extends BlockSlab {
 
             if (enumPosition1 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition1.getFacing().getOpposite()))
             {
-                if (enumPosition1 == enumPosition.rotateYCCW())
+                if (enumPosition1.getFacing() == enumPosition.getFacing().rotateYCCW())
                 {
+                    //System.out.println("OuterCornerLeft");
                     return EnumShape.OUTER_CORNER_LEFT;
                 }
-
+                //System.out.println("OuterCornerRight");
                 return EnumShape.OUTER_CORNER_RIGHT;
             }
         }
@@ -141,11 +152,13 @@ public class BlockSlabVerticalBase extends BlockSlab {
 
             if (enumPosition2 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition2.getFacing()))
             {
-                if (enumPosition2 == enumPosition.rotateYCCW())
+                if (enumPosition2.getFacing() == enumPosition.getFacing().rotateYCCW())
                 {
+                    //System.out.println("InnerCornerLeft");
                     return EnumShape.INNER_CORNER_LEFT;
                 }
 
+                //System.out.println("InnerCornerRight");
                 return EnumShape.INNER_CORNER_RIGHT;
             }
         }
@@ -164,16 +177,21 @@ public class BlockSlabVerticalBase extends BlockSlab {
         return state.getBlock() instanceof BlockSlabVerticalBase;
     }
 
+    @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
     {
-        if (!p_185477_7_)
-        {
-            state = this.getActualState(state, worldIn, pos);
-        }
+        boolean flag = isDouble();
+        System.out.println("isDouble = " + flag);
+        if (isDouble()) {
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
+        } else {
+            if (!p_185477_7_) {
+                state = this.getActualState(state, worldIn, pos);
+            }
 
-        for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
+            for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state)) {
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
+            }
         }
     }
 
@@ -270,26 +288,59 @@ public class BlockSlabVerticalBase extends BlockSlab {
         }
         else
         {
-            switch (state.getValue(POSITION))
-            {
+            switch (state.getValue(POSITION)){
                 case NORTH:
-                    switch (state.getValue(SHAPE))
-                    {
+                    switch (state.getValue(SHAPE)) {
                         case STRAIGHT:
-                        default:
                             return AABB_NORTH_HALF;
                         case OUTER_CORNER_LEFT:
                             return AABB_NORTHWEST_OUTER_CORNER;
                         case OUTER_CORNER_RIGHT:
-                            return AABB_NORTHEAST_OUTER_CORNER
+                            return AABB_NORTHEAST_OUTER_CORNER;
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB;
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB;
                     }
-                    return AABB_NORTH_HALF;
                 case SOUTH:
-                    return AABB_SOUTH_HALF;
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_SOUTH_HALF;
+                        case OUTER_CORNER_LEFT:
+                            return AABB_SOUTHEAST_OUTER_CORNER;
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_SOUTHWEST_OUTER_CORNER;
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB;
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB;
+                    }
                 case EAST:
-                    return AABB_EAST_HALF;
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_EAST_HALF;
+                        case OUTER_CORNER_LEFT:
+                            return AABB_NORTHEAST_OUTER_CORNER;
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_SOUTHEAST_OUTER_CORNER;
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB;
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB;
+                    }
                 case WEST:
-                    return AABB_WEST_HALF;
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_WEST_HALF;
+                        case OUTER_CORNER_LEFT:
+                            return AABB_SOUTHWEST_OUTER_CORNER;
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_NORTHWEST_OUTER_CORNER;
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB;
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB;
+                    }
             }
         }
         return AABB_NORTH_HALF;
@@ -301,12 +352,12 @@ public class BlockSlabVerticalBase extends BlockSlab {
      */
     public boolean isTopSolid(IBlockState state)
     {
-        return ((BlockSlab)state.getBlock()).isDouble();
+        return ((BlockSlabVerticalBase)state.getBlock()).isDouble();
     }
 
     public BlockFaceShape getBlockFaceShape(IBlockAccess access, IBlockState state, BlockPos pos, EnumFacing facing)
     {
-        if (((BlockSlab)state.getBlock()).isDouble())
+        if (((BlockSlabVerticalBase)state.getBlock()).isDouble())
         {
             return BlockFaceShape.SOLID;
         }
@@ -407,7 +458,7 @@ public class BlockSlabVerticalBase extends BlockSlab {
 
         if (this.isDouble())
         {
-            return iblockstate.withProperty(POSITION, EnumPosition.NORTH);
+            return iblockstate;
         }
         else
         {
@@ -436,22 +487,18 @@ public class BlockSlabVerticalBase extends BlockSlab {
         return iblockstate.withProperty(POSITION, EnumPosition.NORTH);
     }
 
-    @Override
     public Comparable<?> getTypeForItem(ItemStack stack) {
         return null;
     }
 
-    @Override
     public String getUnlocalizedName(int meta) {
         return this.getUnlocalizedName();
     }
 
-    @Override
     public IProperty<?> getVariantProperty() {
         return null;
     }
 
-    @Override
     public boolean isDouble() {
         return false;
     }
@@ -559,7 +606,8 @@ public class BlockSlabVerticalBase extends BlockSlab {
         INNER_CORNER_LEFT("inner_corner_left"),
         INNER_CORNER_RIGHT("inner_corner_right"),
         OUTER_CORNER_LEFT("outer_corner_left"),
-        OUTER_CORNER_RIGHT("outer_corner_right");
+        OUTER_CORNER_RIGHT("outer_corner_right"),
+        FULL_BLOCK("full_block");
 
         private final String name;
 
