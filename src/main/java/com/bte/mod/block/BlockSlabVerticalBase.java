@@ -606,8 +606,7 @@ public class BlockSlabVerticalBase extends Block {
         INNER_CORNER_LEFT("inner_corner_left"),
         INNER_CORNER_RIGHT("inner_corner_right"),
         OUTER_CORNER_LEFT("outer_corner_left"),
-        OUTER_CORNER_RIGHT("outer_corner_right"),
-        FULL_BLOCK("full_block");
+        OUTER_CORNER_RIGHT("outer_corner_right");
 
         private final String name;
 
