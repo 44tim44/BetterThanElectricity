@@ -123,12 +123,6 @@ public class BTEMod {
             ModBlocks.registerItemBlocks(event.getRegistry());
         }
 
-        @SubscribeEvent
-        public static void registerModels(ModelRegistryEvent event) {
-            ModItems.registerModels();
-            ModBlocks.registerModels();
-        }
-
     }
 
     @SuppressWarnings("all")
