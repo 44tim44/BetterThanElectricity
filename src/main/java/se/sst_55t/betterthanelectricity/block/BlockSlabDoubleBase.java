@@ -19,7 +19,7 @@ public class BlockSlabDoubleBase extends BlockSlabBase {
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         switch (type) {
-            case ModEnums.BlockType.SMOOTHSTONE:
+            case SMOOTHSTONE:
                 return Item.getItemFromBlock(ModBlocks.smoothstone_slab);
             default:
                 return Item.getItemFromBlock(Blocks.AIR);

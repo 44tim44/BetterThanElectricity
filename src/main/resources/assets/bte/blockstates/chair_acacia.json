@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "bte:chair_acacia", "y": 270 },
-    "facing=south": { "model": "bte:chair_acacia", "y": 90  },
-    "facing=east":  { "model": "bte:chair_acacia"           },
-    "facing=west":  { "model": "bte:chair_acacia", "y": 180 }
-  }
-}

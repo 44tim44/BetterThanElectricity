@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "half=bottom": { "model": "bte:dirt_slab_half" },
-    "half=top": { "model": "bte:dirt_slab_upper" }
-  }
-}

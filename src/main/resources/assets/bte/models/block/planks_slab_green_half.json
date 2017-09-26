@@ -1,8 +1,0 @@
-{
-  "parent": "block/half_slab",
-  "textures": {
-    "bottom": "bte:blocks/planks_green",
-    "top": "bte:blocks/planks_green",
-    "side": "bte:blocks/planks_green"
-  }
-}

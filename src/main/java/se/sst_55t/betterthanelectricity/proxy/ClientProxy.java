@@ -30,8 +30,8 @@ public class ClientProxy extends CommonProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModItems.registerModels();
-        ModBlocks.registerModels();
+        //ModItems.registerModels();
+        //ModBlocks.registerModels();
     }
 
     @Override

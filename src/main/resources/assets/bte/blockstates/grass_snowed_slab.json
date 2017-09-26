@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "half=bottom": { "model": "bte:grass_snowed_slab_half" },
-    "half=top": { "model": "bte:grass_snowed_slab_upper" }
-  }
-}

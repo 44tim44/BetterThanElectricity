@@ -487,7 +487,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ITickabl
 
     public String getGuiID()
     {
-        return "bte:pulverizer_block";
+        return "betterthanelectricity:pulverizer_block";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

@@ -54,11 +54,11 @@ import java.util.logging.Logger;
 @Mod(modid = BTEMod.MODID, name = BTEMod.MODNAME, version = BTEMod.VERSION)
 public class BTEMod {
 
-    public static final String MODID = "bte";
+    public static final String MODID = "betterthanelectricity";
     public static final String MODNAME = "Better Than Electricity";
     public static final String VERSION = "1.0.0";
-    public static final String CLIENT_PROXY = "ClientProxy";
-    public static final String COMMON_PROXY = "CommonProxy";
+    public static final String CLIENT_PROXY = "se.sst_55t.betterthanelectricity.proxy.ClientProxy";
+    public static final String COMMON_PROXY = "se.sst_55t.betterthanelectricity.proxy.CommonProxy";
 
     public static final Item.ToolMaterial copperToolMaterial = EnumHelper
             .addToolMaterial("COPPER", 2, 250, 6, 2, 14);
@@ -98,7 +98,7 @@ public class BTEMod {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
         ModRecipes.init();
-        EntityRegistry.registerModEntity(new ResourceLocation("bte:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
+        EntityRegistry.registerModEntity(new ResourceLocation("betterthanelectricity:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
         initColorsBlocksItems();
         //MinecraftForge.EVENT_BUS.register(new EventHandlerCommon());
         proxy.init(event);
@@ -123,13 +123,12 @@ public class BTEMod {
             ModBlocks.registerItemBlocks(event.getRegistry());
         }
 
-        /*
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
             ModItems.registerModels();
             ModBlocks.registerModels();
         }
-        */
+
     }
 
     @SuppressWarnings("all")

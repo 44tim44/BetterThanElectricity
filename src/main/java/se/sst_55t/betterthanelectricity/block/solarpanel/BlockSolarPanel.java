@@ -2,7 +2,6 @@ package se.sst_55t.betterthanelectricity.block.solarpanel;
 
 import se.sst_55t.betterthanelectricity.BTEMod;
 import se.sst_55t.betterthanelectricity.ModGuiHandler;
-import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -46,7 +45,7 @@ public class BlockSolarPanel extends Block implements ITileEntityProvider{
             if (tile instanceof TileEntitySolarPanel && !tile.isInvalid()) {
 
                 final TileEntitySolarPanel panel = (TileEntitySolarPanel) tile;
-                final ContainerSolarPanel container = (ContainerSolarPanel) panel.getCapability(TeslaCapabilities.CAPABILITY_HOLDER, EnumFacing.DOWN);
+                //final ContainerSolarPanel container = (ContainerSolarPanel) panel.getCapability(EnumFacing.DOWN);
             }
         }
         if (!world.isRemote) {

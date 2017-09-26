@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "half=bottom": { "model": "bte:smoothstone_slab_half" },
-    "half=top": { "model": "bte:smoothstone_slab_upper" }
-  }
-}
