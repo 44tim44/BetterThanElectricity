@@ -35,39 +35,39 @@ public class ModBlocks {
     public static BlockSolarPanel solarPanel = new BlockSolarPanel();
 
     /* Building Blocks */
-    public static BlockBase planks_white = new BlockBase(Material.WOOD,"planks_white").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_lightgray = new BlockBase(Material.WOOD,"planks_lightgray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_gray = new BlockBase(Material.WOOD,"planks_gray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_black = new BlockBase(Material.WOOD,"planks_black").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_brown = new BlockBase(Material.WOOD,"planks_brown").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_red = new BlockBase(Material.WOOD,"planks_red").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_orange = new BlockBase(Material.WOOD,"planks_orange").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_yellow = new BlockBase(Material.WOOD,"planks_yellow").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_lime = new BlockBase(Material.WOOD,"planks_lime").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_green = new BlockBase(Material.WOOD,"planks_green").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_cyan = new BlockBase(Material.WOOD,"planks_cyan").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_lightblue = new BlockBase(Material.WOOD,"planks_lightblue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_blue = new BlockBase(Material.WOOD,"planks_blue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_purple = new BlockBase(Material.WOOD,"planks_purple").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockBase planks_white = new BlockBase(Material.WOOD,"planks_white");
+    public static BlockBase planks_lightgray = new BlockBase(Material.WOOD,"planks_lightgray");
+    public static BlockBase planks_gray = new BlockBase(Material.WOOD,"planks_gray");
+    public static BlockBase planks_black = new BlockBase(Material.WOOD,"planks_black");
+    public static BlockBase planks_brown = new BlockBase(Material.WOOD,"planks_brown");
+    public static BlockBase planks_red = new BlockBase(Material.WOOD,"planks_red");
+    public static BlockBase planks_orange = new BlockBase(Material.WOOD,"planks_orange");
+    public static BlockBase planks_yellow = new BlockBase(Material.WOOD,"planks_yellow");
+    public static BlockBase planks_lime = new BlockBase(Material.WOOD,"planks_lime");
+    public static BlockBase planks_green = new BlockBase(Material.WOOD,"planks_green");
+    public static BlockBase planks_cyan = new BlockBase(Material.WOOD,"planks_cyan");
+    public static BlockBase planks_lightblue = new BlockBase(Material.WOOD,"planks_lightblue");
+    public static BlockBase planks_blue = new BlockBase(Material.WOOD,"planks_blue");
+    public static BlockBase planks_purple = new BlockBase(Material.WOOD,"planks_purple");
+    public static BlockBase planks_magenta = new BlockBase(Material.WOOD,"planks_magenta");
+    public static BlockBase planks_pink = new BlockBase(Material.WOOD,"planks_pink");
 
-    public static BlockSlabBase planks_slab_white = new BlockSlabBase(BlockType.WOOD,"planks_slab_white").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_lightgray = new BlockSlabBase(BlockType.WOOD,"planks_slab_lightgray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_gray = new BlockSlabBase(BlockType.WOOD,"planks_slab_gray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_black = new BlockSlabBase(BlockType.WOOD,"planks_slab_black").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_brown = new BlockSlabBase(BlockType.WOOD,"planks_slab_brown").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_red = new BlockSlabBase(BlockType.WOOD,"planks_slab_red").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_orange = new BlockSlabBase(BlockType.WOOD,"planks_slab_orange").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_yellow = new BlockSlabBase(BlockType.WOOD,"planks_slab_yellow").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_lime = new BlockSlabBase(BlockType.WOOD,"planks_slab_lime").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_green = new BlockSlabBase(BlockType.WOOD,"planks_slab_green").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_cyan = new BlockSlabBase(BlockType.WOOD,"planks_slab_cyan").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_lightblue = new BlockSlabBase(BlockType.WOOD,"planks_slab_lightblue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_blue = new BlockSlabBase(BlockType.WOOD,"planks_slab_blue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_purple = new BlockSlabBase(BlockType.WOOD,"planks_slab_purple").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_magenta = new BlockSlabBase(BlockType.WOOD,"planks_slab_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
-    public static BlockSlabBase planks_slab_pink = new BlockSlabBase(BlockType.WOOD,"planks_slab_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
+    public static BlockSlabBase planks_slab_white = new BlockSlabBase(BlockType.WOOD,"planks_slab_white").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_lightgray = new BlockSlabBase(BlockType.WOOD,"planks_slab_lightgray").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_gray = new BlockSlabBase(BlockType.WOOD,"planks_slab_gray").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_black = new BlockSlabBase(BlockType.WOOD,"planks_slab_black").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_brown = new BlockSlabBase(BlockType.WOOD,"planks_slab_brown").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_red = new BlockSlabBase(BlockType.WOOD,"planks_slab_red").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_orange = new BlockSlabBase(BlockType.WOOD,"planks_slab_orange").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_yellow = new BlockSlabBase(BlockType.WOOD,"planks_slab_yellow").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_lime = new BlockSlabBase(BlockType.WOOD,"planks_slab_lime").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_green = new BlockSlabBase(BlockType.WOOD,"planks_slab_green").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_cyan = new BlockSlabBase(BlockType.WOOD,"planks_slab_cyan").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_lightblue = new BlockSlabBase(BlockType.WOOD,"planks_slab_lightblue").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_blue = new BlockSlabBase(BlockType.WOOD,"planks_slab_blue").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_purple = new BlockSlabBase(BlockType.WOOD,"planks_slab_purple").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_magenta = new BlockSlabBase(BlockType.WOOD,"planks_slab_magenta").setHardness(2.0F);
+    public static BlockSlabBase planks_slab_pink = new BlockSlabBase(BlockType.WOOD,"planks_slab_pink").setHardness(2.0F);
     public static BlockSlabBase planks_doubleslab_white = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_white").setHardness(2.0F);
     public static BlockSlabBase planks_doubleslab_lightgray = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_lightgray").setHardness(2.0F);
     public static BlockSlabBase planks_doubleslab_gray = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_gray").setHardness(2.0F);
@@ -85,16 +85,33 @@ public class ModBlocks {
     public static BlockSlabBase planks_doubleslab_magenta = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_magenta").setHardness(2.0F);
     public static BlockSlabBase planks_doubleslab_pink = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_pink").setHardness(2.0F);
 
-    public static BlockSlabBase smoothstone_slab = new BlockSlabBase(BlockType.SMOOTHSTONE,"smoothstone_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
+    public static BlockBase planks_stairs_white = new BlockStairBase(Material.WOOD,"planks_stairs_white");
+    public static BlockBase planks_stairs_lightgray = new BlockStairBase(Material.WOOD,"planks_stairs_lightgray");
+    public static BlockBase planks_stairs_gray = new BlockStairBase(Material.WOOD,"planks_stairs_gray");
+    public static BlockBase planks_stairs_black = new BlockStairBase(Material.WOOD,"planks_stairs_black");
+    public static BlockBase planks_stairs_brown = new BlockStairBase(Material.WOOD,"planks_stairs_brown");
+    public static BlockBase planks_stairs_red = new BlockStairBase(Material.WOOD,"planks_stairs_red");
+    public static BlockBase planks_stairs_orange = new BlockStairBase(Material.WOOD,"planks_stairs_orange");
+    public static BlockBase planks_stairs_yellow = new BlockStairBase(Material.WOOD,"planks_stairs_yellow");
+    public static BlockBase planks_stairs_lime = new BlockStairBase(Material.WOOD,"planks_stairs_lime");
+    public static BlockBase planks_stairs_green = new BlockStairBase(Material.WOOD,"planks_stairs_green");
+    public static BlockBase planks_stairs_cyan = new BlockStairBase(Material.WOOD,"planks_stairs_cyan");
+    public static BlockBase planks_stairs_lightblue = new BlockStairBase(Material.WOOD,"planks_stairs_lightblue");
+    public static BlockBase planks_stairs_blue = new BlockStairBase(Material.WOOD,"planks_stairs_blue");
+    public static BlockBase planks_stairs_purple = new BlockStairBase(Material.WOOD,"planks_stairs_purple");
+    public static BlockBase planks_stairs_magenta = new BlockStairBase(Material.WOOD,"planks_stairs_magenta");
+    public static BlockBase planks_stairs_pink = new BlockStairBase(Material.WOOD,"planks_stairs_pink");
+
+    public static BlockSlabBase smoothstone_slab = new BlockSlabBase(BlockType.SMOOTHSTONE,"smoothstone_slab").setHardness(2.0F);
     public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setHardness(2.0F);
-    public static BlockSlabGrass grass_slab = new BlockSlabGrass(BlockType.GRASS,"grass_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(0.6F);
+    public static BlockSlabGrass grass_slab = new BlockSlabGrass(BlockType.GRASS,"grass_slab").setHardness(0.6F);
     public static BlockSlabGrass grass_doubleslab = new BlockSlabDoubleGrass(BlockType.GRASS,"grass_doubleslab").setHardness(0.6F);
-    public static BlockSlabGrassSnowed grass_snowed_slab = new BlockSlabGrassSnowed(BlockType.GRASS,"grass_snowed_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabGrassSnowed grass_snowed_slab = new BlockSlabGrassSnowed(BlockType.GRASS,"grass_snowed_slab");
     public static BlockSlabGrassSnowed grass_snowed_doubleslab = new BlockSlabDoubleGrassSnowed(BlockType.GRASS,"grass_snowed_doubleslab");
-    public static BlockSlabDirt dirt_slab = new BlockSlabDirt(BlockType.DIRT,"dirt_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabDirt dirt_slab = new BlockSlabDirt(BlockType.DIRT,"dirt_slab");
     public static BlockSlabDirt dirt_doubleslab = new BlockSlabDoubleDirt(BlockType.DIRT,"dirt_doubleslab");
 
-    public static BlockSlabVerticalBase smoothstone_vertical_slab = new BlockSlabVerticalBase(BlockType.SMOOTHSTONE,"smoothstone_vertical_slab").setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setHardness(2.0F);
+    public static BlockSlabVerticalBase smoothstone_vertical_slab = new BlockSlabVerticalBase(BlockType.SMOOTHSTONE,"smoothstone_vertical_slab").setHardness(2.0F);
     public static BlockSlabVerticalBaseDouble smoothstone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.SMOOTHSTONE,"smoothstone_vertical_doubleslab").setHardness(2.0F);
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();
@@ -183,6 +200,23 @@ public class ModBlocks {
                 planks_doubleslab_magenta,
                 planks_doubleslab_pink,
 
+                planks_stairs_white,
+                planks_stairs_lightgray,
+                planks_stairs_gray,
+                planks_stairs_black,
+                planks_stairs_brown,
+                planks_stairs_red,
+                planks_stairs_orange,
+                planks_stairs_yellow,
+                planks_stairs_lime,
+                planks_stairs_green,
+                planks_stairs_cyan,
+                planks_stairs_lightblue,
+                planks_stairs_blue,
+                planks_stairs_purple,
+                planks_stairs_magenta,
+                planks_stairs_pink,
+
                 smoothstone_slab,
                 smoothstone_doubleslab,
                 grass_slab,
@@ -268,6 +302,23 @@ public class ModBlocks {
                 planks_slab_magenta.createItemSlab(planks_slab_magenta,planks_slab_magenta,planks_doubleslab_magenta),
                 planks_slab_pink.createItemSlab(planks_slab_pink,planks_slab_pink,planks_doubleslab_pink),
 
+                planks_stairs_white.createItemBlock(),
+                planks_stairs_lightgray.createItemBlock(),
+                planks_stairs_gray.createItemBlock(),
+                planks_stairs_black.createItemBlock(),
+                planks_stairs_brown.createItemBlock(),
+                planks_stairs_red.createItemBlock(),
+                planks_stairs_orange.createItemBlock(),
+                planks_stairs_yellow.createItemBlock(),
+                planks_stairs_lime.createItemBlock(),
+                planks_stairs_green.createItemBlock(),
+                planks_stairs_cyan.createItemBlock(),
+                planks_stairs_lightblue.createItemBlock(),
+                planks_stairs_blue.createItemBlock(),
+                planks_stairs_purple.createItemBlock(),
+                planks_stairs_magenta.createItemBlock(),
+                planks_stairs_pink.createItemBlock(),
+
                 smoothstone_slab.createItemSlab(smoothstone_slab,smoothstone_slab,smoothstone_doubleslab),
                 grass_slab.createItemSlab(grass_slab,grass_slab,grass_doubleslab),
                 grass_snowed_slab.createItemSlab(grass_snowed_slab,grass_snowed_slab,grass_snowed_doubleslab),
@@ -336,6 +387,23 @@ public class ModBlocks {
         planks_slab_purple.registerItemModel(Item.getItemFromBlock(planks_slab_purple));
         planks_slab_magenta.registerItemModel(Item.getItemFromBlock(planks_slab_magenta));
         planks_slab_pink.registerItemModel(Item.getItemFromBlock(planks_slab_pink));
+
+        planks_stairs_white.registerItemModel(Item.getItemFromBlock(planks_stairs_white));
+        planks_stairs_lightgray.registerItemModel(Item.getItemFromBlock(planks_stairs_lightgray));
+        planks_stairs_gray.registerItemModel(Item.getItemFromBlock(planks_stairs_gray));
+        planks_stairs_black.registerItemModel(Item.getItemFromBlock(planks_stairs_black));
+        planks_stairs_brown.registerItemModel(Item.getItemFromBlock(planks_stairs_brown));
+        planks_stairs_red.registerItemModel(Item.getItemFromBlock(planks_stairs_red));
+        planks_stairs_orange.registerItemModel(Item.getItemFromBlock(planks_stairs_orange));
+        planks_stairs_yellow.registerItemModel(Item.getItemFromBlock(planks_stairs_yellow));
+        planks_stairs_lime.registerItemModel(Item.getItemFromBlock(planks_stairs_lime));
+        planks_stairs_green.registerItemModel(Item.getItemFromBlock(planks_stairs_green));
+        planks_stairs_cyan.registerItemModel(Item.getItemFromBlock(planks_stairs_cyan));
+        planks_stairs_lightblue.registerItemModel(Item.getItemFromBlock(planks_stairs_lightblue));
+        planks_stairs_blue.registerItemModel(Item.getItemFromBlock(planks_stairs_blue));
+        planks_stairs_purple.registerItemModel(Item.getItemFromBlock(planks_stairs_purple));
+        planks_stairs_magenta.registerItemModel(Item.getItemFromBlock(planks_stairs_magenta));
+        planks_stairs_pink.registerItemModel(Item.getItemFromBlock(planks_stairs_pink));
 
         smoothstone_slab.registerItemModel(Item.getItemFromBlock(smoothstone_slab));
         grass_slab.registerItemModel(Item.getItemFromBlock(grass_slab));

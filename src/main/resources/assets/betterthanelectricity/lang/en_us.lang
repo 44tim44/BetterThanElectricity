@@ -61,6 +61,23 @@ tile.planks_purple.name=Purple Dyed Planks
 tile.planks_magenta.name=Magenta Dyed Planks
 tile.planks_pink.name=Pink Dyed Planks
 
+tile.planks_slab_white.name=White Dyed Planks Slab
+tile.planks_slab_lightgray.name=Light Gray Dyed Planks Slab
+tile.planks_slab_gray.name=Gray Dyed Planks Slab
+tile.planks_slab_black.name=Black Dyed Planks Slab
+tile.planks_slab_brown.name=Brown Dyed Planks Slab
+tile.planks_slab_red.name=Red Dyed Planks Slab
+tile.planks_slab_orange.name=Orange Dyed Planks Slab
+tile.planks_slab_yellow.name=Yellow Dyed Planks Slab
+tile.planks_slab_lime.name=Lime Dyed Planks Slab
+tile.planks_slab_green.name=Green Dyed Planks Slab
+tile.planks_slab_cyan.name=Cyan Dyed Planks Slab
+tile.planks_slab_lightblue.name=Light Blue Dyed Planks Slab
+tile.planks_slab_blue.name=Blue Dyed Planks Slab
+tile.planks_slab_purple.name=Purple Dyed Planks Slab
+tile.planks_slab_magenta.name=Magenta Dyed Planks Slab
+tile.planks_slab_pink.name=Pink Dyed Planks Slab
+
 tile.smoothstone_slab.name=Stone Slab
 tile.grass_slab.name=Grass Slab
 tile.grass_snowed_slab.name=Snowy Grass Slab

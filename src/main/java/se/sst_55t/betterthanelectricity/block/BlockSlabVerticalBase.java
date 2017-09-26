@@ -126,37 +126,29 @@ public class BlockSlabVerticalBase extends Block {
         EnumPosition enumPosition = state.getValue(POSITION);
 
         IBlockState iblockstate = access.getBlockState(pos.offset(enumPosition.getFacing()));
-
         if(isBlockPane(iblockstate))
         {
             EnumPosition enumPosition1 = iblockstate.getValue(POSITION);
-
             if (enumPosition1 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition1.getFacing().getOpposite()))
             {
                 if (enumPosition1.getFacing() == enumPosition.getFacing().rotateYCCW())
                 {
-                    //System.out.println("OuterCornerLeft");
                     return EnumShape.OUTER_CORNER_LEFT;
                 }
-                //System.out.println("OuterCornerRight");
                 return EnumShape.OUTER_CORNER_RIGHT;
             }
         }
 
         IBlockState iblockstate1 = access.getBlockState(pos.offset(enumPosition.getFacing().getOpposite()));
-        if(isBlockPane(iblockstate))
+        if(isBlockPane(iblockstate1))
         {
             EnumPosition enumPosition2 = iblockstate1.getValue(POSITION);
-
             if (enumPosition2 != (state.getValue(POSITION)) && isDifferentPanes(state, access, pos, enumPosition2.getFacing()))
             {
                 if (enumPosition2.getFacing() == enumPosition.getFacing().rotateYCCW())
                 {
-                    //System.out.println("InnerCornerLeft");
                     return EnumShape.INNER_CORNER_LEFT;
                 }
-
-                //System.out.println("InnerCornerRight");
                 return EnumShape.INNER_CORNER_RIGHT;
             }
         }
@@ -172,14 +164,12 @@ public class BlockSlabVerticalBase extends Block {
 
     public static boolean isBlockPane(IBlockState state)
     {
-        return state.getBlock() instanceof BlockSlabVerticalBase;
+        return state.getBlock() instanceof BlockSlabVerticalBase && !((BlockSlabVerticalBase) state.getBlock()).isDouble();
     }
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
     {
-        boolean flag = isDouble();
-        System.out.println("isDouble = " + flag);
         if (isDouble()) {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
         } else {
