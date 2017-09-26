@@ -1,5 +1,6 @@
 package se.sst_55t.betterthanelectricity;
 
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import se.sst_55t.betterthanelectricity.block.ModBlocks;
 import se.sst_55t.betterthanelectricity.capability.CapabilityHandler;
 import se.sst_55t.betterthanelectricity.capability.Charge;
@@ -121,6 +122,11 @@ public class BTEMod {
         public static void registerItems(RegistryEvent.Register<Item> event) {
             ModItems.register(event.getRegistry());
             ModBlocks.registerItemBlocks(event.getRegistry());
+        }
+
+        @SubscribeEvent
+        public static void registerEntities(RegistryEvent.Register<EntityEntry> event)
+        {
         }
 
     }
