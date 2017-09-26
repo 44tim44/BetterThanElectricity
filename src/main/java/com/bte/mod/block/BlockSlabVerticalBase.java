@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class BlockSlabVerticalBase extends Block {
 
-    public static final PropertyEnum<BlockSlabVerticalBase.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBase.EnumPosition>create("half", BlockSlabVerticalBase.EnumPosition.class);
+    public static final PropertyEnum<BlockSlabVerticalBase.EnumPosition> POSITION = PropertyEnum.<BlockSlabVerticalBase.EnumPosition>create("position", BlockSlabVerticalBase.EnumPosition.class);
     public static final PropertyEnum<BlockSlabVerticalBase.EnumShape> SHAPE = PropertyEnum.<BlockSlabVerticalBase.EnumShape>create("shape", BlockSlabVerticalBase.EnumShape.class);
     protected static final AxisAlignedBB AABB_NORTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
     protected static final AxisAlignedBB AABB_SOUTH_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
@@ -111,6 +111,7 @@ public class BlockSlabVerticalBase extends Block {
         }
     }
 
+    @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         if(isDouble())
@@ -397,11 +398,13 @@ public class BlockSlabVerticalBase extends Block {
     /**
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return isDouble();
     }
 
+    @Override
     public boolean isFullCube(IBlockState state)
     {
         return isDouble();
