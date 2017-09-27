@@ -40,6 +40,7 @@ public class ModItems {
     public static ItemBase corn = new ItemBase("corn").setCreativeTab(CreativeTabs.FOOD);
 
     public static ItemBattery battery = new ItemBattery();
+    public static ItemMiningDrill miningDrill = new ItemMiningDrill();
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
@@ -70,7 +71,8 @@ public class ModItems {
                 cornSeed,
                 corn,
 
-                battery
+                battery,
+                miningDrill
         );
     }
 
@@ -102,6 +104,7 @@ public class ModItems {
         corn.registerItemModel();
 
         battery.registerItemModel();
+        miningDrill.registerItemModel();
     }
 
 }

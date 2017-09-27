@@ -24,7 +24,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
 
     public void update () {
         ItemStack itemstack = inventory.getStackInSlot(0);
-        if (isCharging() && itemstack.getItem() == ModItems.battery)
+        if (isCharging() && (itemstack.getItem() == ModItems.battery || itemstack.getItem() == ModItems.miningDrill))
         {
             ICharge charge = itemstack.getCapability(ChargeProvider.CHARGE_CAPABILITY,null);
             if(charge.getCharge() < charge.getMaxCharge()) {

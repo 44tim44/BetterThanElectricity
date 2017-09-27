@@ -26,6 +26,8 @@ item.steel_pickaxe.name=Steel Pickaxe
 item.corn.name=Corn
 item.corn_seed.name=Corn Seed
 
+item.mining_drill.name=Mining Drill
+
 # Blocks
 tile.ore_copper.name=Copper Ore
 tile.ore_tin.name=Tin Ore
