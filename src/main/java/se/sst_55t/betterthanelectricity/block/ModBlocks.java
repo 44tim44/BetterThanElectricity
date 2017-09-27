@@ -4,6 +4,7 @@ package se.sst_55t.betterthanelectricity.block;
  * Created by Timeout on 2017-08-20.
  */
 
+import net.minecraft.init.Blocks;
 import se.sst_55t.betterthanelectricity.ModEnums.BlockType;
 import se.sst_55t.betterthanelectricity.block.counter.BlockCounter;
 import se.sst_55t.betterthanelectricity.block.electricfurnace.BlockElectricFurnace;
@@ -85,22 +86,22 @@ public class ModBlocks {
     public static BlockSlabBase planks_doubleslab_magenta = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_magenta").setHardness(2.0F);
     public static BlockSlabBase planks_doubleslab_pink = new BlockSlabBase(BlockType.WOOD,"planks_doubleslab_pink").setHardness(2.0F);
 
-    public static BlockBase planks_stairs_white = new BlockStairBase(Material.WOOD,"planks_stairs_white").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_lightgray = new BlockStairBase(Material.WOOD,"planks_stairs_lightgray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_gray = new BlockStairBase(Material.WOOD,"planks_stairs_gray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_black = new BlockStairBase(Material.WOOD,"planks_stairs_black").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_brown = new BlockStairBase(Material.WOOD,"planks_stairs_brown").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_red = new BlockStairBase(Material.WOOD,"planks_stairs_red").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_orange = new BlockStairBase(Material.WOOD,"planks_stairs_orange").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_yellow = new BlockStairBase(Material.WOOD,"planks_stairs_yellow").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_lime = new BlockStairBase(Material.WOOD,"planks_stairs_lime").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_green = new BlockStairBase(Material.WOOD,"planks_stairs_green").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_cyan = new BlockStairBase(Material.WOOD,"planks_stairs_cyan").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_lightblue = new BlockStairBase(Material.WOOD,"planks_stairs_lightblue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_blue = new BlockStairBase(Material.WOOD,"planks_stairs_blue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_purple = new BlockStairBase(Material.WOOD,"planks_stairs_purple").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_magenta = new BlockStairBase(Material.WOOD,"planks_stairs_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static BlockBase planks_stairs_pink = new BlockStairBase(Material.WOOD,"planks_stairs_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_white = new BlockStairsBase(planks_white.getDefaultState(),"planks_stairs_white").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_lightgray = new BlockStairsBase(planks_lightgray.getDefaultState(),"planks_stairs_lightgray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_gray = new BlockStairsBase(planks_gray.getDefaultState(),"planks_stairs_gray").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_black = new BlockStairsBase(planks_black.getDefaultState(),"planks_stairs_black").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_brown = new BlockStairsBase(planks_brown.getDefaultState(),"planks_stairs_brown").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_red = new BlockStairsBase(planks_red.getDefaultState(),"planks_stairs_red").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_orange = new BlockStairsBase(planks_orange.getDefaultState(),"planks_stairs_orange").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_yellow = new BlockStairsBase(planks_yellow.getDefaultState(),"planks_stairs_yellow").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_lime = new BlockStairsBase(planks_lime.getDefaultState(),"planks_stairs_lime").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_green = new BlockStairsBase(planks_green.getDefaultState(),"planks_stairs_green").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_cyan = new BlockStairsBase(planks_cyan.getDefaultState(),"planks_stairs_cyan").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_lightblue = new BlockStairsBase(planks_lightblue.getDefaultState(),"planks_stairs_lightblue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_blue = new BlockStairsBase(planks_blue.getDefaultState(),"planks_stairs_blue").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_purple = new BlockStairsBase(planks_purple.getDefaultState(),"planks_stairs_purple").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_magenta = new BlockStairsBase(planks_magenta.getDefaultState(),"planks_stairs_magenta").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase planks_stairs_pink = new BlockStairsBase(planks_pink.getDefaultState(),"planks_stairs_pink").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
     public static BlockSlabBase smoothstone_slab = new BlockSlabBase(BlockType.SMOOTHSTONE,"smoothstone_slab").setHardness(2.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockSlabBase smoothstone_doubleslab = new BlockSlabDoubleBase(BlockType.SMOOTHSTONE,"smoothstone_doubleslab").setHardness(2.0F);
@@ -114,7 +115,7 @@ public class ModBlocks {
     public static BlockSlabVerticalBase smoothstone_vertical_slab = new BlockSlabVerticalBase(BlockType.SMOOTHSTONE,"smoothstone_vertical_slab").setHardness(2.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockSlabVerticalBaseDouble smoothstone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.SMOOTHSTONE,"smoothstone_vertical_doubleslab").setHardness(2.0F);
 
-    public static BlockBase smoothstone_stairs = new BlockStairBase(Material.ROCK,"smoothstone_stairs").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockStairsBase smoothstone_stairs = new BlockStairsBase(Blocks.STONE.getDefaultState(),"smoothstone_stairs").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
     /* Other */
     public static BlockCropCorn cropCorn = new BlockCropCorn();

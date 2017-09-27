@@ -78,12 +78,31 @@ tile.planks_slab_purple.name=Purple Dyed Planks Slab
 tile.planks_slab_magenta.name=Magenta Dyed Planks Slab
 tile.planks_slab_pink.name=Pink Dyed Planks Slab
 
+tile.planks_stairs_white.name=White Dyed Planks Stairs
+tile.planks_stairs_lightgray.name=Light Gray Dyed Planks Stairs
+tile.planks_stairs_gray.name=Gray Dyed Planks Stairs
+tile.planks_stairs_black.name=Black Dyed Planks Stairs
+tile.planks_stairs_brown.name=Brown Dyed Planks Stairs
+tile.planks_stairs_red.name=Red Dyed Planks Stairs
+tile.planks_stairs_orange.name=Orange Dyed Planks Stairs
+tile.planks_stairs_yellow.name=Yellow Dyed Planks Stairs
+tile.planks_stairs_lime.name=Lime Dyed Planks Stairs
+tile.planks_stairs_green.name=Green Dyed Planks Stairs
+tile.planks_stairs_cyan.name=Cyan Dyed Planks Stairs
+tile.planks_stairs_lightblue.name=Light Blue Dyed Planks Stairs
+tile.planks_stairs_blue.name=Blue Dyed Planks Stairs
+tile.planks_stairs_purple.name=Purple Dyed Planks Stairs
+tile.planks_stairs_magenta.name=Magenta Dyed Planks Stairs
+tile.planks_stairs_pink.name=Pink Dyed Planks Stairs
+
 tile.smoothstone_slab.name=Stone Slab
 tile.grass_slab.name=Grass Slab
 tile.grass_snowed_slab.name=Snowy Grass Slab
 tile.dirt_slab.name=Dirt Slab
 
 tile.smoothstone_vertical_slab.name=Stone Pane
+
+tile.smoothstone_stairs.name=Stone Stairs
 
 tile.chair_oak.name=Oak Chair
 tile.chair_spruce.name=Spruce Chair
