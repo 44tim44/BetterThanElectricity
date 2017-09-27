@@ -27,6 +27,8 @@ item.corn.name=Corn
 item.corn_seed.name=Corn Seed
 
 item.mining_drill.name=Mining Drill
+item.battery.name=Battery
+item.electric_circuit.name=Electric Circuit
 
 # Blocks
 tile.ore_copper.name=Copper Ore
@@ -44,7 +46,6 @@ container.solar_panel=Pulverizer
 
 tile.machine_block.name=Machine Block
 
-item.battery.name=Battery
 
 tile.planks_white.name=White Dyed Planks
 tile.planks_lightgray.name=Light Gray Dyed Planks

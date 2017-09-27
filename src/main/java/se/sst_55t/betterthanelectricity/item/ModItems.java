@@ -42,6 +42,9 @@ public class ModItems {
     public static ItemBattery battery = new ItemBattery();
     public static ItemMiningDrill miningDrill = new ItemMiningDrill();
 
+    public static ItemBase electricCircuit = new ItemBase("electric_circuit").setCreativeTab(CreativeTabs.MISC);
+    public static ItemBase drillHead = new ItemBase("drill_head").setCreativeTab(CreativeTabs.MISC);
+
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
                 copperDust,
@@ -72,7 +75,10 @@ public class ModItems {
                 corn,
 
                 battery,
-                miningDrill
+                miningDrill,
+
+                electricCircuit,
+                drillHead
         );
     }
 
@@ -105,6 +111,9 @@ public class ModItems {
 
         battery.registerItemModel();
         miningDrill.registerItemModel();
+
+        electricCircuit.registerItemModel();
+        drillHead.registerItemModel();
     }
 
 }
