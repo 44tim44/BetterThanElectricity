@@ -172,15 +172,12 @@ public class BlockSlabVerticalBase extends Block {
 
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean flag)
+    public void addCollisionBoxToList(IBlockState iBlockState, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean flag)
     {
+        IBlockState state = this.getActualState(iBlockState, worldIn, pos);
         if (((BlockSlabVerticalBase)state.getBlock()).isDouble()) {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
         } else {
-            if (!flag) {
-                state = this.getActualState(state, worldIn, pos);
-            }
-
             EnumPosition position = state.getValue(POSITION);
             EnumShape shape = state.getValue(SHAPE);
             switch (position) {
@@ -189,65 +186,89 @@ public class BlockSlabVerticalBase extends Block {
                         case STRAIGHT:
                         default:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case SOUTH:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case EAST:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case WEST:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
                             addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                     }
+                    break;
             }
         }
     }
@@ -270,65 +291,89 @@ public class BlockSlabVerticalBase extends Block {
                         case STRAIGHT:
                         default:
                             list.add(AABB_NORTH_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             list.add(AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             list.add(AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             list.add(AABB_NORTH_HALF);
                             list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             list.add(AABB_NORTH_HALF);
                             list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case SOUTH:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             list.add(AABB_SOUTH_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             list.add(AABB_SOUTH_HALF);
                             list.add(AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             list.add(AABB_SOUTH_HALF);
                             list.add(AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case EAST:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             list.add(AABB_EAST_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             list.add(AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             list.add(AABB_EAST_HALF);
                             list.add(AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             list.add(AABB_EAST_HALF);
                             list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                     }
+                    break;
                 case WEST:
                     switch (shape) {
                         case STRAIGHT:
                         default:
                             list.add(AABB_WEST_HALF);
+                            break;
                         case OUTER_CORNER_LEFT:
                             list.add(AABB_SOUTHWEST_OUTER_CORNER);
+                            break;
                         case OUTER_CORNER_RIGHT:
                             list.add(AABB_NORTHWEST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_LEFT:
                             list.add(AABB_WEST_HALF);
                             list.add(AABB_SOUTHEAST_OUTER_CORNER);
+                            break;
                         case INNER_CORNER_RIGHT:
                             list.add(AABB_WEST_HALF);
                             list.add(AABB_NORTHEAST_OUTER_CORNER);
+                            break;
                     }
+                    break;
             }
             return list;
         }
@@ -403,6 +448,82 @@ public class BlockSlabVerticalBase extends Block {
         return AABB_NORTH_HALF;
     }
     */
+
+    /**
+     * Return an AABB (in world coords!) that should be highlighted when the player is targeting this Block
+     */
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
+    {
+        if (this.isDouble())
+        {
+            return FULL_BLOCK_AABB.offset(pos);
+        }
+        else
+        {
+            state = this.getActualState(state,worldIn,pos);
+            switch (state.getValue(POSITION)){
+                case NORTH:
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_NORTH_HALF.offset(pos);
+                        case OUTER_CORNER_LEFT:
+                            return AABB_NORTHWEST_OUTER_CORNER.offset(pos);
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_NORTHEAST_OUTER_CORNER.offset(pos);
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                    }
+                    break;
+                case SOUTH:
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_SOUTH_HALF.offset(pos);
+                        case OUTER_CORNER_LEFT:
+                            return AABB_SOUTHEAST_OUTER_CORNER.offset(pos);
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_SOUTHWEST_OUTER_CORNER.offset(pos);
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                    }
+                    break;
+                case EAST:
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_EAST_HALF.offset(pos);
+                        case OUTER_CORNER_LEFT:
+                            return AABB_NORTHEAST_OUTER_CORNER.offset(pos);
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_SOUTHEAST_OUTER_CORNER.offset(pos);
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                    }
+                    break;
+                case WEST:
+                    switch (state.getValue(SHAPE)) {
+                        case STRAIGHT:
+                            return AABB_WEST_HALF.offset(pos);
+                        case OUTER_CORNER_LEFT:
+                            return AABB_SOUTHWEST_OUTER_CORNER.offset(pos);
+                        case OUTER_CORNER_RIGHT:
+                            return AABB_NORTHWEST_OUTER_CORNER.offset(pos);
+                        case INNER_CORNER_LEFT:
+                            return FULL_BLOCK_AABB.offset(pos);
+                        case INNER_CORNER_RIGHT:
+                            return FULL_BLOCK_AABB.offset(pos);
+
+                    }
+                    break;
+            }
+        }
+        return AABB_NORTH_HALF.offset(pos);
+    }
 
     /**
      * Determines if the block is solid enough on the top side to support other blocks, like redstone components.
@@ -504,15 +625,6 @@ public class BlockSlabVerticalBase extends Block {
                 return face == EnumFacing.WEST;
         }
         return isDouble();
-    }
-
-    /**
-     * Return an AABB (in world coords!) that should be highlighted when the player is targeting this Block
-     */
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
-    {
-        return state.getBoundingBox(worldIn, pos).offset(pos);
     }
 
     /**
