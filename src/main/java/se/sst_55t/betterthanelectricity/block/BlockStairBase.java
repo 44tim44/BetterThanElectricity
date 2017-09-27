@@ -140,7 +140,7 @@ public class BlockStairBase extends BlockBase
         super(material, name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(SHAPE, BlockStairs.EnumShape.STRAIGHT));
         this.setLightOpacity(255);
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        //this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
@@ -346,7 +346,7 @@ public class BlockStairBase extends BlockBase
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
     {
-        return FULL_BLOCK_AABB;
+        return state.getBoundingBox(worldIn, pos).offset(pos);
     }
 
     /**

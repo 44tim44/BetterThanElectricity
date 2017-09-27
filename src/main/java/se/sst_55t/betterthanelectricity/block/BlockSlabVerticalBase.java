@@ -1,5 +1,7 @@
 package se.sst_55t.betterthanelectricity.block;
 
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import se.sst_55t.betterthanelectricity.BTEMod;
 import se.sst_55t.betterthanelectricity.ModEnums;
 import se.sst_55t.betterthanelectricity.item.ItemVerticalSlab;
@@ -51,6 +53,7 @@ public class BlockSlabVerticalBase extends Block {
         super(type.getMaterialType().getMaterial());
         this.setSoundType(type.getMaterialType().getSound());
 
+        this.fullBlock = this.isDouble();
         this.name = name;
         this.type = type;
         this.useNeighborBrightness = true;
@@ -111,7 +114,7 @@ public class BlockSlabVerticalBase extends Block {
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        if(isDouble())
+        if(this.isDouble())
         {
             return state;
         }
@@ -167,18 +170,84 @@ public class BlockSlabVerticalBase extends Block {
         return state.getBlock() instanceof BlockSlabVerticalBase && !((BlockSlabVerticalBase) state.getBlock()).isDouble();
     }
 
+
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean flag)
     {
-        if (isDouble()) {
+        if (((BlockSlabVerticalBase)state.getBlock()).isDouble()) {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
         } else {
-            if (!p_185477_7_) {
+            if (!flag) {
                 state = this.getActualState(state, worldIn, pos);
             }
 
-            for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state)) {
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
+            EnumPosition position = state.getValue(POSITION);
+            EnumShape shape = state.getValue(SHAPE);
+            switch (position) {
+                case NORTH:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
+                        case OUTER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTH_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                    }
+                case SOUTH:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
+                        case OUTER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTH_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                    }
+                case EAST:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
+                        case OUTER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_EAST_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                    }
+                case WEST:
+                    switch (shape) {
+                        case STRAIGHT:
+                        default:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
+                        case OUTER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHWEST_OUTER_CORNER);
+                        case OUTER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHWEST_OUTER_CORNER);
+                        case INNER_CORNER_LEFT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_SOUTHEAST_OUTER_CORNER);
+                        case INNER_CORNER_RIGHT:
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_WEST_HALF);
+                            addCollisionBoxToList(pos, entityBox, collidingBoxes,AABB_NORTHEAST_OUTER_CORNER);
+                    }
             }
         }
     }
@@ -186,7 +255,7 @@ public class BlockSlabVerticalBase extends Block {
     private static List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
     {
         List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
-        if (state.isFullCube())
+        if (((BlockSlabVerticalBase)state.getBlock()).isDouble())
         {
             list.add(FULL_BLOCK_AABB);
             return list;
@@ -388,13 +457,13 @@ public class BlockSlabVerticalBase extends Block {
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        return isDouble();
+        return this.isDouble();
     }
 
     @Override
     public boolean isFullCube(IBlockState state)
     {
-        return isDouble();
+        return this.isDouble();
     }
 
     @SideOnly(Side.CLIENT)
@@ -438,6 +507,15 @@ public class BlockSlabVerticalBase extends Block {
     }
 
     /**
+     * Return an AABB (in world coords!) that should be highlighted when the player is targeting this Block
+     */
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
+    {
+        return state.getBoundingBox(worldIn, pos).offset(pos);
+    }
+
+    /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
@@ -475,6 +553,40 @@ public class BlockSlabVerticalBase extends Block {
             }
         }
         return iblockstate.withProperty(POSITION, EnumPosition.NORTH);
+    }
+
+    /**
+     * Ray traces through the blocks collision from start vector to end vector returning a ray trace hit.
+     */
+    @Override
+    @Nullable
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+
+        for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
+        {
+            list.add(this.rayTrace(pos, start, end, axisalignedbb));
+        }
+
+        RayTraceResult raytraceresult1 = null;
+        double d1 = 0.0D;
+
+        for (RayTraceResult raytraceresult : list)
+        {
+            if (raytraceresult != null)
+            {
+                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+
+                if (d0 > d1)
+                {
+                    raytraceresult1 = raytraceresult;
+                    d1 = d0;
+                }
+            }
+        }
+
+        return raytraceresult1;
     }
 
     public Comparable<?> getTypeForItem(ItemStack stack) {
