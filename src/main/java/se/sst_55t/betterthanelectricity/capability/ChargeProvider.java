@@ -1,10 +1,12 @@
 package se.sst_55t.betterthanelectricity.capability;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import se.sst_55t.betterthanelectricity.proxy.CommonProxy;
 
 /**
  * Created by Timeout on 2017-08-23.
@@ -37,14 +39,15 @@ public class ChargeProvider implements ICapabilitySerializable<NBTBase>
     @Override
     public NBTBase serializeNBT()
     {
-        //return CHARGE_CAPABILITY.getStorage().writeNBT(CHARGE_CAPABILITY, this.instance, null);
-        return CHARGE_CAPABILITY.writeNBT(this.instance,null);
+        return CHARGE_CAPABILITY.getStorage().writeNBT(CHARGE_CAPABILITY, this.instance, null);
+        //return CHARGE_CAPABILITY.writeNBT(this.instance,null);
     }
 
     @Override
     public void deserializeNBT(NBTBase nbt)
     {
-        //CHARGE_CAPABILITY.getStorage().readNBT(CHARGE_CAPABILITY, this.instance, null, nbt);
-        CHARGE_CAPABILITY.readNBT(this.instance, null, nbt);
+        CHARGE_CAPABILITY.getStorage().readNBT(CHARGE_CAPABILITY, this.instance, null, nbt);
+        //CHARGE_CAPABILITY.readNBT(this.instance, null, nbt);
     }
+
 }

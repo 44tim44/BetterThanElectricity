@@ -100,7 +100,7 @@ public class BTEMod {
     public void init(FMLInitializationEvent event){
         ModRecipes.init();
         EntityRegistry.registerModEntity(new ResourceLocation("betterthanelectricity:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
-        initColorsBlocksItems();
+
         //MinecraftForge.EVENT_BUS.register(new EventHandlerCommon());
         proxy.init(event);
     }
@@ -131,31 +131,5 @@ public class BTEMod {
 
     }
 
-    @SuppressWarnings("all")
-    public void initColorsBlocksItems(){
-        final BlockColors blockcolors = Minecraft.getMinecraft().getBlockColors();
-        blockcolors.registerBlockColorHandler(new IBlockColor()
-        {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
-            {
-                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
-            }
-        }, ModBlocks.grass_slab);
-        blockcolors.registerBlockColorHandler(new IBlockColor()
-        {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
-            {
-                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
-            }
-        }, ModBlocks.grass_doubleslab);
-        final ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
-        itemcolors.registerItemColorHandler(new IItemColor()
-        {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
-            {
-                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
-                return blockcolors.colorMultiplier(iblockstate, (IBlockAccess)null, (BlockPos)null, tintIndex);
-            }
-        }, ModBlocks.grass_slab, ModBlocks.grass_doubleslab);
-    }
+
 }

@@ -20,6 +20,6 @@ public class ChargeStorage implements Capability.IStorage<ICharge> {
     @Override
     public void readNBT(Capability<ICharge> capability, ICharge instance, EnumFacing side, NBTBase nbt)
     {
-        instance.setCharge(((NBTPrimitive) nbt).getInt());
+        instance.setCharge(((NBTTagInt) nbt).getInt());
     }
 }
