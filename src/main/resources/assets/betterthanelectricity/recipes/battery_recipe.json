@@ -10,7 +10,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "I": {
-      "item": "betterthanelectricity:ingot_steel"
+      "item": "betterthanelectricity:ingot_aluminum"
     },
     "C": {
       "item": "betterthanelectricity:ingot_copper"

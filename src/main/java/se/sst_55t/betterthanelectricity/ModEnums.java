@@ -18,7 +18,8 @@ public class ModEnums
         COPPER("copper",MaterialType.IRON),
         TIN("tin",MaterialType.IRON),
         BRONZE("bronze",MaterialType.IRON),
-        STEEL("steel",MaterialType.IRON);
+        STEEL("steel",MaterialType.IRON),
+        VANILLASTONESLAB("stone",MaterialType.ROCK);
 
         final String name;
         final MaterialType materialType;

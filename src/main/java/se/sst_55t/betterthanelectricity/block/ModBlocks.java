@@ -114,6 +114,8 @@ public class ModBlocks {
 
     public static BlockSlabVerticalBase smoothstone_vertical_slab = new BlockSlabVerticalBase(BlockType.SMOOTHSTONE,"smoothstone_vertical_slab").setHardness(2.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static BlockSlabVerticalBaseDouble smoothstone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.SMOOTHSTONE,"smoothstone_vertical_doubleslab").setHardness(2.0F);
+    public static BlockSlabVerticalBase stone_vertical_slab = new BlockSlabVerticalBase(BlockType.VANILLASTONESLAB,"stone_vertical_slab").setHardness(2.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static BlockSlabVerticalBaseDouble stone_vertical_doubleslab = new BlockSlabVerticalBaseDouble(BlockType.VANILLASTONESLAB,"stone_vertical_doubleslab").setHardness(2.0F);
 
     public static BlockStairsBase smoothstone_stairs = new BlockStairsBase(Blocks.STONE.getDefaultState(),"smoothstone_stairs").setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
@@ -232,6 +234,8 @@ public class ModBlocks {
 
                 smoothstone_vertical_slab,
                 smoothstone_vertical_doubleslab,
+                stone_vertical_slab,
+                stone_vertical_doubleslab,
 
                 smoothstone_stairs,
 
@@ -331,6 +335,7 @@ public class ModBlocks {
                 dirt_slab.createItemSlab(dirt_slab,dirt_slab,dirt_doubleslab),
 
                 smoothstone_vertical_slab.createItemSlab(smoothstone_vertical_slab,smoothstone_vertical_slab,smoothstone_vertical_doubleslab),
+                stone_vertical_slab.createItemSlab(stone_vertical_slab,stone_vertical_slab,stone_vertical_doubleslab),
 
                 smoothstone_stairs.createItemBlock(),
 
@@ -419,6 +424,7 @@ public class ModBlocks {
         dirt_slab.registerItemModel(Item.getItemFromBlock(dirt_slab));
 
         smoothstone_vertical_slab.registerItemModel(Item.getItemFromBlock(smoothstone_vertical_slab));
+        stone_vertical_slab.registerItemModel(Item.getItemFromBlock(stone_vertical_slab));
 
         smoothstone_stairs.registerItemModel(Item.getItemFromBlock(smoothstone_stairs));
 
