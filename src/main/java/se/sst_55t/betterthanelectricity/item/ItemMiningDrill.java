@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import se.sst_55t.betterthanelectricity.BTEMod;
 import se.sst_55t.betterthanelectricity.capability.ChargeProvider;
 import se.sst_55t.betterthanelectricity.capability.ICharge;
+import se.sst_55t.betterthanelectricity.util.ModSoundEvents;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -77,7 +78,7 @@ public class ItemMiningDrill extends Item {
                 Block block = iblockstate.getBlock();
                 Material material = iblockstate.getMaterial();
 
-                if (material == Material.ROCK || material == Material.GROUND || material == Material.GRASS || block == Blocks.GRAVEL || block == Blocks.SAND)
+                if (block != Blocks.BEDROCK && (material == Material.ROCK || material == Material.GROUND || material == Material.GRASS || block == Blocks.GRAVEL || block == Blocks.SAND))
                 {
                     this.mineBlock(itemstack, player, worldIn, pos, iblockstate);
                     return EnumActionResult.SUCCESS;
@@ -96,7 +97,7 @@ public class ItemMiningDrill extends Item {
 
     protected void mineBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state)
     {
-        worldIn.playSound(player, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        worldIn.playSound(player, pos, ModSoundEvents.DRILL_SPIN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
         if (!worldIn.isRemote)
         {

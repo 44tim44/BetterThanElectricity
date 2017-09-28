@@ -1,0 +1,9 @@
+{
+  "drill.spin": {
+    "category": "player",
+    "sounds": [
+      "betterthanelectricity:drill"
+    ],
+    "subtitle": "betterthanelectricity.subtitle.drill"
+  }
+}
