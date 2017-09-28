@@ -41,8 +41,8 @@ container.pulverizer=Pulverizer
 tile.electric_furnace_block.name=Electric Furnace
 container.electric_furnace=Electric Furnace
 
-tile.solar_panel_block.name=Pulverizer
-container.solar_panel=Pulverizer
+tile.solar_panel_block.name=Solar Panel
+container.solar_panel=Solar Panel
 
 tile.machine_block.name=Machine Block
 

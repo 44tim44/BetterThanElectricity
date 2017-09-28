@@ -20,6 +20,7 @@ public class ModSoundEvents {
 
     @ObjectHolder("record.solaris")
     public static final SoundEvent DRILL_SPIN = createSoundEvent("drill.spin");
+    public static final SoundEvent DOOR_SLIDE = createSoundEvent("door.slide");
 
 
     /**
@@ -38,7 +39,8 @@ public class ModSoundEvents {
         @SubscribeEvent
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
             event.getRegistry().registerAll(
-                    DRILL_SPIN
+                    DRILL_SPIN,
+                    DOOR_SLIDE
             );
         }
     }

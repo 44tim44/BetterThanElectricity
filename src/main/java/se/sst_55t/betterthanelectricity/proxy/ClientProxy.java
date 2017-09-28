@@ -1,9 +1,11 @@
 package se.sst_55t.betterthanelectricity.proxy;
 
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import se.sst_55t.betterthanelectricity.BTEMod;
+import se.sst_55t.betterthanelectricity.block.BlockDoorBase;
 import se.sst_55t.betterthanelectricity.block.ModBlocks;
 import se.sst_55t.betterthanelectricity.block.table.TESRTable;
 import se.sst_55t.betterthanelectricity.block.table.TileEntityTable;
@@ -28,6 +30,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new TESRTable());
+        ModelLoader.setCustomStateMapper(ModBlocks.glassDoor, (new StateMap.Builder()).ignore(BlockDoorBase.POWERED).build());
     }
 
     @Override

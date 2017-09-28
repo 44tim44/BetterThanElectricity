@@ -136,6 +136,8 @@ public class ModBlocks {
     public static BlockTable tableAcacia = new BlockTable(Material.WOOD,"table_acacia");
     public static BlockTable tableDarkOak = new BlockTable(Material.WOOD,"table_dark_oak");
 
+    public static BlockBase glassDoor = new BlockDoorBase(Material.GLASS,"glass_door",true);
+
 
 
     public static void register(IForgeRegistry<Block> registry) {
@@ -251,7 +253,9 @@ public class ModBlocks {
                 tableBirch,
                 tableJungle,
                 tableAcacia,
-                tableDarkOak
+                tableDarkOak,
+
+                glassDoor
 
         );
 
@@ -440,7 +444,6 @@ public class ModBlocks {
         tableJungle.registerItemModel(Item.getItemFromBlock(tableJungle));
         tableAcacia.registerItemModel(Item.getItemFromBlock(tableAcacia));
         tableDarkOak.registerItemModel(Item.getItemFromBlock(tableDarkOak));
-
 
     }
 

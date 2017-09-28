@@ -1,6 +1,7 @@
 package se.sst_55t.betterthanelectricity.item;
 
 import se.sst_55t.betterthanelectricity.BTEMod;
+import se.sst_55t.betterthanelectricity.block.ModBlocks;
 import se.sst_55t.betterthanelectricity.item.tool.ItemPickaxe;
 import se.sst_55t.betterthanelectricity.item.tool.ItemSword;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,6 +46,8 @@ public class ModItems {
     public static ItemBase electricCircuit = new ItemBase("electric_circuit").setCreativeTab(CreativeTabs.MISC);
     public static ItemBase drillHead = new ItemBase("drill_head").setCreativeTab(CreativeTabs.MISC);
 
+    public static ItemBase glassDoorItem = new ItemDoorCustom(ModBlocks.glassDoor,"glass_door_item").setCreativeTab(CreativeTabs.REDSTONE);
+
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
                 copperDust,
@@ -78,7 +81,9 @@ public class ModItems {
                 miningDrill,
 
                 electricCircuit,
-                drillHead
+                drillHead,
+
+                glassDoorItem
         );
     }
 
@@ -114,6 +119,8 @@ public class ModItems {
 
         electricCircuit.registerItemModel();
         drillHead.registerItemModel();
+
+        glassDoorItem.registerItemModel();
     }
 
 }
